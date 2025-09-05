@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "IIT Bhilai iconic H-Tower",
+    "image": "/images/homePage/hero/iitbh-htower.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Dr. Jose with his Supervisor(middle) in HT & SE",
+    "image": "/images/homePage/hero/dr-jose-with-his-supervisor.jpeg"
+  },
+  {
+    "id": 3,
+    "title": "Our Phd Scholar Mr. Illyas Hussain pitching his Phd thesis work as startup idea for seed grant",
+    "image": "/images/homePage/hero/ilyas-pitching-startup-idea.jpeg"
+  },
+  {
+    "id": 4,
+    "title": "Dr. Jose at summit",
+    "image": "/images/homePage/hero/jose-sir-conference.jpeg"
+  },
+  {
+    "id": 5,
+    "title": "State-Of-art automated micro-indentation testing facility",
+    "image": "/images/homePage/hero/micro-indentation-testing-facility.jpeg"
+  },
+  {
+    "id": 6,
+    "title": "Strategic Applications",
+    "image": "/images/homePage/hero/some-machine.jpeg"
+  }
+]

@@ -1,0 +1,230 @@
+/* Import Google Fonts at the top */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Orbitron:wght@700&family=Roboto+Condensed:wght@700&family=Space+Grotesk:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-scrollUp {
+  animation: scrollUp var(--animation-duration) linear infinite;
+}
+
+body {
+  /* This makes 'Inter' the default font for the entire website */
+  font-family: 'Inter', sans-serif;
+  
+  /* --- THESE LINES ARE UPDATED --- */
+  background-color: #020617; /* slate-950 */
+  background-image: repeating-linear-gradient(45deg, rgba(100, 116, 139, 0.1), rgba(100, 116, 139, 0.1) 1px, transparent 1px, transparent 2rem),
+                    repeating-linear-gradient(-45deg, rgba(100, 116, 139, 0.1), rgba(100, 116, 139, 0.1) 1px, transparent 1px, transparent 2rem);
+  /* The background-size property is no longer needed for this pattern */
+  
+  color: #cbd5e1; /* slate-300 */
+}
+
+/* Class for main display titles */
+.font-display {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Class for smaller headings and card titles */
+.font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Class for all buttons */
+.font-button {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-plus-jakarta-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* New Css */
+
+
+
+/* ============================================= */
+/* --- Premium Custom Scrollbar --- */
+/* ============================================= */
+
+/* This targets any element with the "custom-scrollbar" class */
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #2dd4bf #1e293b; /* thumb track */
+}
+
+/* For Webkit Browsers (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1e293b; /* A dark slate color */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #2dd4bf; /* Our accent cyan */
+  border-radius: 10px;
+  border: 2px solid #1e293b; /* Creates a nice padding effect */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #5eead4; /* A lighter cyan on hover */
+}
+
+
+
+
+
+/* --- Embla Carousel Styles (New Version) --- */
+.embla {
+  --slide-spacing: 1rem;
+  --slide-size: 80%;
+  --slide-height: 24rem;
+}
+@media (min-width: 768px) {
+  .embla {
+    --slide-size: 50%;
+  }
+}
+@media (min-width: 1024px) {
+  .embla {
+    --slide-size: 33.333%;
+  }
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  touch-action: pan-y;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+
+
+/* scrolling authours in Publicatons section  */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+
+/* --- Collaborators Carousel Styles --- */
+.embla-collaborators {
+  overflow: hidden;
+}
+.embla-collaborators__container {
+  display: flex;
+  align-items: center; 
+}
+.embla-collaborators__slide {
+  flex: 0 0 14rem; /* Increased width from 12rem to 14rem (224px) */
+  min-width: 0;
+  padding: 0 0.75rem; 
+}
+
+
+
+/* --- Team Section Carousel Styles --- */
+.embla-team {
+  overflow: hidden;
+}
+.embla-team__container {
+  display: flex;
+}
+.embla-team__slide {
+  flex: 0 0 80%; /* 1 card visible on mobile */
+  min-width: 0;
+  padding-left: 1rem;
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .embla-team__slide {
+    flex: 0 0 50%; /* 2 cards visible on tablet */
+  }
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+  .embla-team__slide {
+    flex: 0 0 33.333%; /* 3 cards visible on desktop */
+  }
+}
+
+
+
+/* --- Styles for notification bar --- */
+/* This will apply the marquee animation only on screens SMALLER than 640px */
+@keyframes scroll-off {
+  from {
+    transform: translateX(100%); /* Start just off-screen to the right */
+  }
+  to {
+    transform: translateX(-100%); /* End completely off-screen to the left */
+  }
+}
+
+@media (max-width: 639px) {
+  .sm-scroll-off {
+    
+    white-space: nowrap;
+    /* This now uses the new animation */
+    animation: scroll-off 15s linear 1s infinite;
+  }
+}
+
+
+
+
+
+/* --- HomePage Hero Carousel Styles --- */
+.embla-hero {
+  overflow: hidden;
+}
+.embla-hero__container {
+  display: flex;
+}
+.embla-hero__slide {
+  flex: 0 0 100%; /* Each slide takes up the full width */
+  min-width: 0;
+  position: relative;
+}

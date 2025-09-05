@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Novel Materials Design",
+    "description": "Developing advanced alloys and composites with tailored properties for high-performance applications.",
+    "icon": "Hexagon",
+    "link": "/about"
+  },
+  {
+    "id": 2,
+    "title": "Additive Manufacturing",
+    "description": "Utilizing cutting-edge 3D printing techniques to fabricate complex metallic components and structures.",
+    "icon": "Layers",
+    "link": "/about"
+  },
+  {
+    "id": 3,
+    "title": "Microstructural Engineering",
+    "description": "Investigating material microstructures to establish structure-property relationships and enhance performance.",
+    "icon": "Atom",
+    "link": "/about"
+  },
+  {
+    "id": 4,
+    "title": "Strategic Applications",
+    "description": "Applying our materials expertise to solve critical challenges in the space, defense, and bio-medical sectors.",
+    "icon": "ShieldCheck",
+    "link": "/about"
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "title": "Our Research",
+    "subtitle": "",
+    "backgroundImage": "/images/pagesBanner/banner4.png"
+  },
+  "projects" : [
+  {
+    "id": "1",
+    "title": "To be updated soon.",
+    "image": "/images/nebula.jpg",
+    "link": "#",
+    "fields": ["Quantum", "AI", "Materials"],
+    "description": "Exploring novel quantum algorithms to accelerate the discovery of new materials with unprecedented properties.",
+    "status": "Ongoing",
+    "startDate": "2023-01-15",
+    "endDate": "2025-01-14",
+    "teamMembers": [{ "name": "Dr. Aris Thorne", "profileLink": "/team/aris-thorne" }]
+  },
+  {
+    "id": "2",
+    "title": "To be updated soon.",
+    "image": "/images/nebula.jpg",
+    "link": "#",
+    "fields": ["Quantum", "AI", "Materials"],
+    "description": "Exploring novel quantum algorithms to accelerate the discovery of new materials with unprecedented properties.",
+    "status": "Ongoing",
+    "startDate": "2023-01-15",
+    "endDate": "2025-01-14",
+    "teamMembers": [{ "name": "Dr. Aris Thorne", "profileLink": "/team/aris-thorne" }]
+  },
+  {
+    "id": "3",
+    "title": "To be updated soon.",
+    "image": "/images/nebula.jpg",
+    "link": "#",
+    "fields": ["Quantum", "AI", "Materials"],
+    "description": "Exploring novel quantum algorithms to accelerate the discovery of new materials with unprecedented properties.",
+    "status": "Ongoing",
+    "startDate": "2023-01-15",
+    "endDate": "2025-01-14",
+    "teamMembers": [{ "name": "Dr. Aris Thorne", "profileLink": "/team/aris-thorne" }]
+  },
+  {
+    "id": "4",
+    "title": "To be updated soon.",
+    "image": "/images/nebula.jpg",
+    "link": "#",
+    "fields": ["Quantum", "AI", "Materials"],
+    "description": "Exploring novel quantum algorithms to accelerate the discovery of new materials with unprecedented properties.",
+    "status": "Ongoing",
+    "startDate": "2023-01-15",
+    "endDate": "2025-01-14",
+    "teamMembers": [{ "name": "Dr. Aris Thorne", "profileLink": "/team/aris-thorne" }]
+  }
+]
+}

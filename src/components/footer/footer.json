@@ -1,0 +1,18 @@
+{
+  "logoUrl": "/images/logos/amdcg-logo2.jpg",
+  "brief": "An active research group at IIT Bhilai focused on designing novel materials for strategic applications in space, defense, and bio-medical sectors.",
+  "address": {
+    "line1": "Research Lab-414, ED-2, Department of Mechanical Engineering, IIT Bhilai",
+    "line2": "Kutelabhata, Durg, Chhattisgarh-491001, India"
+  },
+  "contact": {
+    "email": "jose@iitbhilai.ac.in",
+    "phone": "+91 9600983877"
+  },
+  "socials": [
+    { "name": "Twitter", "icon": "Twitter", "link": "https://x.com/joseimmanuel" },
+    { "name": "LinkedIn", "icon": "Linkedin", "link": "https://www.linkedin.com/company/amdcg-iitbhilai/" },
+    { "name": "GitHub", "icon": "Github", "link": "https://github.com/AMDCG-ResearchGroup" }
+  ],
+  "googleMapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29754.176919561738!2d81.28883902163932!3d21.221055463186765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a293d920dfc4355%3A0x62d2d02080f3e3b2!2sIIT%20Bhilai%20Gate%20Number%202%3A%20Kohka%20Gate!5e0!3m2!1sen!2sin!4v1757077275606!5m2!1sen!2sin" 
+}

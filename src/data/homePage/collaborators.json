@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "École Centrale de Nantes",
+    "logoUrl": "/images/homePage/collaborations/ecole-nantes.png",
+    "link": "https://www.ec-nantes.fr/english-version"
+  },
+  {
+    "id": 2,
+    "name": "IIT Jammu",
+    "logoUrl": "/images/homePage/collaborations/iit_jammu.png",
+    "link": "https://www.iitjammu.ac.in/"
+  },
+  {
+    "id": 3,
+    "name": "NERIST",
+    "logoUrl": "/images/homePage/collaborations/nerist.png",
+    "link": "https://nerist.ac.in/"
+  },
+  {
+    "id": 4,
+    "name": "NIT Raipur",
+    "logoUrl": "/images/homePage/collaborations/nit_raipur.png",
+    "link": "https://www.nitrr.ac.in/"
+  },
+  {
+    "id": 5,
+    "name": "Villa College",
+    "logoUrl": "/images/homePage/collaborations/villa_college.png",
+    "link": "https://villacollege.edu.mv/"
+  },
+  {
+    "id": 6,
+    "name": "VIT",
+    "logoUrl": "/images/homePage/collaborations/vit.png",
+    "link": "https://vit.ac.in/"
+  },
+  {
+    "id": 3,
+    "name": "NERIST",
+    "logoUrl": "/images/homePage/collaborations/nerist.png",
+    "link": "https://nerist.ac.in/"
+  },
+  {
+    "id": 4,
+    "name": "NIT Raipur",
+    "logoUrl": "/images/homePage/collaborations/nit_raipur.png",
+    "link": "https://www.nitrr.ac.in/"
+  }
+]

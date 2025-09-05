@@ -1,0 +1,11 @@
+{
+  "heading": "Welcome to AMDCG",
+  "icon": "Atom",
+  "paragraph1": "We are an active research group within the Department of Mechanical Engineering at IIT Bhilai, bringing together a diverse team of undergraduate, postgraduate, doctoral, and post-doctoral scholars from across the world. Our mission is to create a dynamic and collaborative environment where rigorous academic inquiry meets hands-on innovation to solve real-world problems.",
+  "paragraph2": "Our core focus is the design and development of novel materials for strategic applications. We engineer solutions for demanding environments in the space, defense, and bio-medical sectors, working with materials ranging from advanced lightweight alloys like Al, Mg, and Ti to robust high-temperature superalloys for extreme performance.",
+  "paragraph3": "Grounded in a strong background of physical metallurgy, we conduct fundamental studies to establish critical structure-property correlationships. By mastering techniques from conventional casting to state-of-the-art additive manufacturing, we tailor material properties through precise microstructural engineering. Our members actively contribute to the global scientific community, consistently presenting our acclaimed work at international conferences and workshops.",
+  "button": {
+    "text": "Learn More About Us",
+    "link": "/about"
+  }
+}

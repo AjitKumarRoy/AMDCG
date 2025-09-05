@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "question": "What is the primary focus of AMDCG?",
+    "answer": "AMDCG (Advanced Materials Design and Characterization Group) focuses on the design and development of novel materials, such as lightweight alloys and high-temperature superalloys, for strategic applications in the space, defense, and bio-medical sectors."
+  },
+  {
+    "id": 2,
+    "question": "How can I join or collaborate with AMDCG?",
+    "answer": "We welcome passionate UG, PG, Doctoral, and Post-doctoral scholars. Open positions are listed on our website under the 'Careers' section. For industry or academic collaborations, please reach out to us via our Contact page."
+  },
+  {
+    "id": 3,
+    "question": "What research methods does the group use?",
+    "answer": "Our research utilizes a range of strategies from conventional casting to state-of-the-art additive manufacturing (3D printing). We conduct fundamental studies in physical metallurgy to engineer material microstructures and enhance their performance."
+  },
+  {
+    "id": 4,
+    "question": "Is participation limited to a specific department?",
+    "answer": "While our group is based in the Department of Mechanical Engineering, our work is highly interdisciplinary. We actively collaborate with researchers and students from various engineering and science backgrounds to solve complex materials challenges."
+  }
+]

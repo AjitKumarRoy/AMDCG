@@ -1,0 +1,22 @@
+{
+  "backgroundImage": "/images/cta-background-additive.jpg",
+  "headline": "Join Us",
+  "subheadline": "Join our team of researchers and scholars to design and develop the novel materials that will define the next generation of technology.",
+  "buttons": [
+    {
+      "text": "View All Projects",
+      "link": "/research",
+      "variant": "primary"
+    },
+    {
+      "text": "Open Positions",
+      "link": "/careers",
+      "variant": "secondary"
+    },
+    {
+      "text": "Contact Us",
+      "link": "/contact",
+      "variant": "secondary"
+    }
+  ]
+}
