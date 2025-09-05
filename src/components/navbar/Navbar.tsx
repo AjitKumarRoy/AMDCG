@@ -5,7 +5,6 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import SearchBar from "./SearchBar";
 import { AnimatedTitle } from "./AnimatedTitle";
-import Logo from "./Logo";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 import { moreDropdownLinks } from "./NavbarData";
