@@ -26,35 +26,35 @@ const robotoCondensed = Roboto_Condensed({
   variable: '--font-roboto-condensed',
 });
 
-// --- UPDATED METADATA OBJECT ---
+// --- UPDATED METADATA FOR AMDCG ---
 export const metadata: Metadata = {
   // --- Core Metadata ---
-   title: {
-    default: 'ORBI: Orbital Research & Beyond Innovations',
-    template: '%s | ORBI', // %s will be replaced by the page-specific title
+  title: {
+    default: 'AMDCG: Advanced Materials Development and Characterization Group',
+    template: '%s | AMDCG',
   },
-  description: "ORBI is a multidisciplinary research group at NERIST dedicated to pioneering sustainable innovations through cutting-edge research in Artificial Intelligence, Aerospace, and Robotics.",
+  description: "AMDCG is an active research group at IIT Bhilai focused on the design and development of novel materials for strategic applications in the space, defense, and bio-medical sectors.",
   
   // --- SEO Keywords ---
-  keywords: ['ORBI', 'Orbital Research', 'NERIST', 'Aerospace Engineering', 'Artificial Intelligence', 'Robotics', 'Sustainable Technology', 'Research and Development'],
+  keywords: ['AMDCG', 'IIT Bhilai', 'Materials Science', 'Metallurgy', 'Additive Manufacturing', 'Mechanical Engineering', 'Novel Materials', 'High Entropy Alloys', 'Alloy Design'],
   
   // --- Author & Publisher ---
-  authors: [{ name: 'ORBI - NERIST', url: 'https://orbi.nerist.ac.in' }],
-  creator: 'ORBI',
-  publisher: 'North Eastern Regional Institute of Science and Technology',
+  authors: [{ name: 'AMDCG - IIT Bhilai', url: 'https://research.iitbhilai.ac.in/amdcg/' }],
+  creator: 'AMDCG',
+  publisher: 'Indian Institute of Technology Bhilai',
 
   // --- Open Graph for Social Media (LinkedIn, Facebook, etc.) ---
   openGraph: {
-    title: 'ORBI: Orbital Research & Beyond Innovations',
-    description: 'A multidisciplinary research group pioneering sustainable innovations in AI, Aerospace, and Robotics.',
-    url: 'https://orbi.nerist.ac.in',
-    siteName: 'ORBI',
+    title: 'AMDCG: Advanced Materials Development and Characterization Group',
+    description: 'An active research group at IIT Bhilai focused on designing novel materials for strategic applications.',
+    url: 'https://research.iitbhilai.ac.in/amdcg/',
+    siteName: 'AMDCG Research Group',
     images: [
       {
-        url: '/og-image.jpg', // Your preview image
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'ORBI Research Group Logo and Title',
+        alt: 'AMDCG Research Group Banner',
       },
     ],
     locale: 'en_US',
@@ -64,22 +64,22 @@ export const metadata: Metadata = {
   // --- Twitter Card ---
   twitter: {
     card: 'summary_large_image',
-    title: 'ORBI: Orbital Research & Beyond Innovations',
-    description: 'A multidisciplinary research group pioneering sustainable innovations in AI, Aerospace, and Robotics.',
-    images: ['/og-image.jpg'], // Your preview image
+    title: 'AMDCG: Advanced Materials Development and Characterization Group',
+    description: 'An active research group at IIT Bhilai focused on designing novel materials for strategic applications.',
+    images: ['/og-image.jpg'],
   },
 
   // --- Icons & Manifest ---
   icons: {
     icon: '/favicon.ico',
-    shortcut: '/icon1.png',
-    apple: '/apple-icon.png',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
   },
   manifest: '/manifest.json',
 
   // --- Apple Mobile Web App Title ---
   appleWebApp: {
-    title: "ORBI",
+    title: "AMDCG",
     capable: true,
     statusBarStyle: "black-translucent",
   },

@@ -5,30 +5,30 @@ import coreMembersData from '@/data/teamPage/coreMembers.json';
 // import studentMembersData from '@/data/teamPage/studentMembers.json';
 
 
-// --- NEW, CORRECTED METADATA FOR THE TEAM PAGE ---
+// --- NEW, CORRECTED METADATA FOR THE AMDCG TEAM PAGE ---
 export const metadata: Metadata = {
-  title: teamPageInfo.hero.title, // e.g., "Our Team & Mentors"
-  description: `Meet the dedicated faculty, coordinators, student members, and mentors from leading institutions like NERIST, ISRO, and DRDO who guide ORBI's research and innovation.`,
+  title: teamPageInfo.hero.title, // "Our Team & Mentors"
+  description: `Meet the dedicated faculty, coordinators, and scholars of the Advanced Materials Development and Characterization Group (AMDCG) at IIT Bhilai.`,
   alternates: {
-    canonical: `https://orbi.nerist.ac.in/team`,
+    canonical: `https://research.iitbhilai.ac.in/amdcg/team`,
   },
   openGraph: {
-    title: `${teamPageInfo.hero.title} | ORBI`,
-    description: 'Discover the passionate minds driving the future of aerospace, AI, and robotics at ORBI.',
-    url: `https://orbi.nerist.ac.in/team`,
+    title: `${teamPageInfo.hero.title} | AMDCG`,
+    description: 'Discover the passionate minds driving the future of materials science and engineering at AMDCG, IIT Bhilai.',
+    url: `https://research.iitbhilai.ac.in/amdcg/team`,
     images: [
       {
-        url: '/og-image-team.jpg', // A dedicated OG image for this page
+        url: '/og-image-team.jpg', // A dedicated OG image for the team page
         width: 1200,
         height: 630,
-        alt: 'The Team and Mentors of the ORBI Research Group',
+        alt: 'The Team and Mentors of the AMDCG Research Group',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${teamPageInfo.hero.title} | ORBI`,
-    description: 'Discover the passionate minds driving the future of aerospace, AI, and robotics at ORBI.',
+    title: `${teamPageInfo.hero.title} | AMDCG`,
+    description: 'Discover the passionate minds driving the future of materials science and engineering at AMDCG, IIT Bhilai.',
     images: ['/og-image-team.jpg'],
   },
 };
@@ -38,15 +38,16 @@ export default function TeamPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": `${teamPageInfo.hero.title} | ORBI`,
-    "url": `https://orbi.nerist.ac.in/team`,
-    "description": "Meet the dedicated faculty, coordinators, student members, and mentors who form the core of the ORBI research group at NERIST.",
+    "name": `${teamPageInfo.hero.title} | AMDCG`,
+    "url": `https://research.iitbhilai.ac.in/amdcg/team`,
+    "description": "Meet the dedicated faculty, coordinators, and student members who form the core of the AMDCG research group at IIT Bhilai.",
     "mainEntity": {
       "@type": "Organization",
-      "name": "ORBI: Orbital Research & Beyond Innovations",
-      "url": "https://orbi.nerist.ac.in/"
+      "name": "AMDCG: Advanced Materials Development and Characterization Group",
+      "url": "https://research.iitbhilai.ac.in/amdcg/"
     }
   };
+
 
   return (
     <>
