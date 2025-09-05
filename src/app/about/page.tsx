@@ -1,36 +1,56 @@
-import { Metadata } from 'next';
-import { AboutPageClient } from '@/components/aboutPage/AboutPageClient'; // Import the new client component
+import type { Metadata } from 'next';
+import { AboutPageClient } from '@/components/aboutPage/AboutPageClient';
 
-// --- SEO for the About Page ---
+// --- NEW, CORRECTED METADATA FOR THE AMDCG ABOUT PAGE ---
 export const metadata: Metadata = {
-  title: "About SMART-25 | International AI Conference",
-  description: "Learn about the mission, organizers, and thematic areas of the SMART-25 conference. A joint initiative by IIT Bhilai, Villa College, and St. Mother Theresa Engineering College.",
+  title: "About AMDCG",
+  description: "Learn about the mission, vision, and the dedicated team of the Advanced Materials Development and Characterization Group (AMDCG) at IIT Bhilai. Discover our focus on materials science and strategic applications.",
   alternates: {
-    canonical: "https://smart25.org/about", // Use your actual domain
+    canonical: "https://research.iitbhilai.ac.in/amdcg/about",
   },
   openGraph: {
-    title: "About the SMART-25 AI Conference",
-    description: "Discover the vision behind SMART-25, a conference dedicated to accelerating SDGs through Artificial Intelligence.",
-    url: "https://smart25.org/about",
+    title: "About AMDCG | Advanced Materials Development and Characterization Group",
+    description: "Discover the mission, vision, and team behind AMDCG, a leading materials science research group at IIT Bhilai.",
+    url: "https://research.iitbhilai.ac.in/amdcg/about",
     images: [
       {
-        url: 'https://smart25.org/og-image-about.jpg', // A dedicated OG image for this page
+        url: '/og-image.jpg', // A dedicated OG image for this page
         width: 1200,
         height: 630,
-        alt: 'About the SMART-25 Conference',
+        alt: 'About the AMDCG Research Group',
       },
     ],
-    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "About SMART-25 | International AI Conference",
-    description: "Learn about the mission and organizers of the SMART-25 conference on AI for Sustainable Development Goals.",
-    images: ['https://smart25.org/og-image-about.jpg'],
+    title: "About AMDCG | Advanced Materials Development and Characterization Group",
+    description: "Discover the mission, vision, and team behind AMDCG, a leading materials science research group at IIT Bhilai.",
+    images: ['/og-image.jpg'],
   },
 };
 
-// This is now a simple Server Component
 export default function AboutPage() {
-  return <AboutPageClient />;
+  // --- ADDED STRUCTURED DATA FOR THE ABOUT PAGE ---
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About AMDCG | Advanced Materials Development and Characterization Group",
+    "url": "https://research.iitbhilai.ac.in/amdcg/about",
+    "description": "Learn about the mission, vision, and team of the AMDCG research group.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "AMDCG: Advanced Materials Development and Characterization Group",
+      "url": "https://research.iitbhilai.ac.in/amdcg/"
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <AboutPageClient />
+    </>
+  );
 }

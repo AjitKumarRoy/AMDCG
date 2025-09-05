@@ -12,6 +12,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // This remains a simple Server Component that renders the client part
-export default function CommitteePage() {
+export default function NewAndEventsPage() {
   return <NewsAndEventsPageClient />;
 }

@@ -13,6 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // This is now a simple Server Component
-export default function RegistrationPage() {
+export default function FacilitiesPage() {
   return <FacilitiesPageClient />;
 }
