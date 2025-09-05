@@ -34,4 +34,4 @@ jobs:
           port: 22 # Default SFTP port
           local-dir: ./out/
           # The destination on the server. "./" means the root/home directory you connect to.
-          server-dir: ./
+          server-dir: ./home/amdcg
