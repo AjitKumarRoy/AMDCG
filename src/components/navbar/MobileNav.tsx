@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { FiSearch, FiMenu, FiX, FiHome, FiChevronDown, FiChevronUp } from "react-icons/fi";
-import Logo from "./Logo";
+import { AnimatedTitle } from "./AnimatedTitle";
 import { mainNavLinks, moreDropdownLinks } from "./NavbarData";
 
 // Define props
@@ -72,7 +72,7 @@ export function MobileNav({
             className="fixed top-0 left-0 w-64 h-screen bg-slate-950 shadow-2xl z-50 flex flex-col lg:hidden"
           >
             <div className="flex justify-between items-center p-5 border-b border-slate-800">
-              <Link href="/" onClick={handleCloseAll}><Logo /></Link>
+              <Link href="/" onClick={handleCloseAll}><AnimatedTitle /></Link>
             </div>
             <div className="flex-1 p-5 flex flex-col gap-2 overflow-y-auto">
               {mainNavLinks.map((item) => (

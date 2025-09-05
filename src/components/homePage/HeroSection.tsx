@@ -38,7 +38,7 @@ export const HeroSection = () => {
   }, [emblaApi]);
 
   return (
-    <section className="relative h-[70vh] lg:h-[90vh] w-full group/container overflow-x-hidden">
+    <section className="relative h-[35vh] lg:h-[90vh] w-full group/container overflow-x-hidden">
       <div className="embla-hero h-full" ref={emblaRef}>
         <div className="embla-hero__container h-full">
           {heroData.map((slide) => (
@@ -70,12 +70,20 @@ export const HeroSection = () => {
       </div>
 
         {/* --- UPDATED: Responsive and rounded arrow buttons --- */}
-      <button onClick={scrollPrev} className="absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm text-white transition-all duration-300 opacity-0 group-hover/container:opacity-70 hover:!opacity-100 hover:bg-amber-500/20 hover:border-amber-500" aria-label="Previous slide">
-        <ArrowLeft className="mx-auto h-6 w-6" />
-      </button>
-      <button onClick={scrollNext} className="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm text-white transition-all duration-300 opacity-0 group-hover/container:opacity-70 hover:!opacity-100 hover:bg-amber-500/20 hover:border-amber-500" aria-label="Next slide">
-        <ArrowRight className="mx-auto h-6 w-6" />
-      </button>
+      <button 
+  onClick={scrollPrev} 
+  className="absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm text-white transition-all duration-300 opacity-40 group-hover/container:opacity-80 hover:!opacity-100 hover:bg-amber-500/20 hover:border-amber-500" 
+  aria-label="Previous slide"
+>
+  <ArrowLeft className="mx-auto h-6 w-6" />
+</button>
+<button 
+  onClick={scrollNext} 
+  className="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm text-white transition-all duration-300 opacity-40 group-hover/container:opacity-80 hover:!opacity-100 hover:bg-amber-500/20 hover:border-amber-500" 
+  aria-label="Next slide"
+>
+  <ArrowRight className="mx-auto h-6 w-6" />
+</button>
 
       {/* --- UPDATED: Responsive thumbnail navigation --- */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-4">
