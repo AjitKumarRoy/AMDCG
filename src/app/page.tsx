@@ -16,60 +16,62 @@ import { FaqAndCTA } from '@/components/homePage/FaqAndCTA';
 
 
 
-// --- NEW, CORRECTED METADATA FOR ORBI ---
+// --- NEW, CORRECTED METADATA FOR AMDCG ---
 export const metadata: Metadata = {
   title: {
-    default: 'ORBI: Orbital Research & Beyond Innovations',
-    template: '%s | ORBI',
+    default: 'AMDCG: Advanced Materials Development and Characterization Group',
+    template: '%s | AMDCG',
   },
-  description: "ORBI is a multidisciplinary research group at NERIST dedicated to pioneering sustainable innovations through cutting-edge research in Artificial Intelligence, Aerospace, and Robotics.",
-  keywords: ['ORBI', 'Orbital Research', 'NERIST', 'Arunachal Pradesh', 'Aerospace Engineering', 'Artificial Intelligence', 'Robotics', 'Sustainable Technology', 'Space Technology', 'R&D'],
-  authors: [{ name: 'ORBI - NERIST', url: 'https://orbi.nerist.ac.in' }],
+  description: "AMDCG is an active research group at IIT Bhilai focused on the design and development of novel materials for strategic applications in the space, defense, and bio-medical sectors.",
+  keywords: ['AMDCG', 'IIT Bhilai', 'Materials Science', 'Metallurgy', 'Additive Manufacturing', 'Mechanical Engineering', 'Novel Materials', 'High Entropy Alloys', 'Alloy Design'],
+  authors: [{ name: 'AMDCG - IIT Bhilai', url: 'https://research.iitbhilai.ac.in/amdcg/' }], // Replace with your final domain
   
   openGraph: {
-    title: 'ORBI: Orbital Research & Beyond Innovations',
-    description: 'A multidisciplinary research group pioneering sustainable innovations in AI, Aerospace, and Robotics.',
-    url: 'https://orbi.nerist.ac.in',
-    siteName: 'ORBI Research Group',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+    title: 'AMDCG: Advanced Materials Development and Characterization Group',
+    description: 'An active research group at IIT Bhilai focused on designing novel materials for strategic applications.',
+    url: 'https://research.iitbhilai.ac.in/amdcg/', // Replace with your final domain
+    siteName: 'AMDCG Research Group',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'AMDCG Research Group Banner' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ORBI: Orbital Research & Beyond Innovations',
-    description: 'A multidisciplinary research group pioneering sustainable innovations in AI, Aerospace, and Robotics.',
+    title: 'AMDCG: Advanced Materials Development and Characterization Group',
+    description: 'An active research group at IIT Bhilai focused on designing novel materials for strategic applications.',
     images: ['/og-image.jpg'],
   },
 };
 
+
 export default function Homepage() {
 
-  // --- NEW, CORRECTED STRUCTURED DATA FOR ORBI ---
+  // --- NEW, CORRECTED STRUCTURED DATA FOR AMDCG ---
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "ORBI: Orbital Research & Beyond Innovations",
-    "url": "https://orbi.nerist.ac.in",
-    "logo": "https://orbi.nerist.ac.in/images/logos/orbi-black-background.PNG",
-    "description": "ORBI is a multidisciplinary research group at NERIST dedicated to pioneering sustainable innovations through cutting-edge research in Artificial Intelligence, Aerospace, and Robotics.",
+    "name": "AMDCG: Advanced Materials Development and Characterization Group",
+    "url": "https://research.iitbhilai.ac.in/amdcg/", // Replace with your final domain
+    "logo": "https://research.iitbhilai.ac.in/amdcg/images/logos/amdcg-logo.png",
+    "description": "AMDCG is an active research group at IIT Bhilai focused on the design and development of novel materials for strategic applications in the space, defense, and bio-medical sectors.",
     "parentOrganization": {
       "@type": "CollegeOrUniversity",
-      "name": "North Eastern Regional Institute of Science and Technology (NERIST)",
-      "url": "https://www.nerist.ac.in/"
+      "name": "Indian Institute of Technology Bhilai (IIT Bhilai)",
+      "url": "https://research.iitbhilai.ac.in/amdcg/"
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "NH 52A",
-      "addressLocality": "Nirjuli",
-      "addressRegion": "Arunachal Pradesh",
-      "postalCode": "791109",
+      "streetAddress": "Research Lab-414, ED-2, Department of Mechanical Engineering, IIT Bhilai",
+      "addressLocality": "Bhilai",
+      "addressRegion": "Chhattisgarh",
+      "postalCode": "491001",
       "addressCountry": "IN"
     },
     "sameAs": [
-      "https://twitter.com/your-handle", // Replace with your social media links
-      "https://linkedin.com/company/your-handle"
+      "https://www.linkedin.com/company/amdcg-iitbhilai/"
+      // Add other social media links here
     ]
   };
+
 
 
 

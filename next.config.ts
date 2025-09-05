@@ -16,6 +16,13 @@ const nextConfig = {
       },
     ],
   },
+
+  // This generates a static HTML/CSS/JS folder named 'out'
+  output: 'export',
+  
+  // This tells Next.js that your site will be in the /amdcg subdirectory
+  // It automatically prefixes all links and asset paths correctly.
+  basePath: '/amdcg',
 };
 
 module.exports = nextConfig;
