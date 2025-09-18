@@ -1,9 +1,15 @@
+// the simple root layout no Navbar and Footer
+
 import "@/styles/globals.css";
 
-import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+import { GoogleAnalytics } from '@/components/providers/GoogleAnalytics';
+import GoogleCaptchaWrapper from '@/components/providers/GoogleCaptchaWrapper';
+
 import { Inter, Orbitron, Space_Grotesk, Roboto_Condensed } from "next/font/google";
 import { LoadingProvider } from "@/context/LoadingContext";
-import AppContentWrapper from "@/components/AppContentWrapper";
+import { Toaster } from 'react-hot-toast';
+// import AppContentWrapper from "@/components/layout/AppContentWrapper";
+import AuthProvider from "@/components/providers/AuthProvider";
 import type { Metadata } from 'next';
 
 const inter = Inter({ 
@@ -88,12 +94,31 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${orbitron.variable} ${spaceGrotesk.variable} ${robotoCondensed.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${orbitron.variable} ${spaceGrotesk.variable} ${robotoCondensed.variable} custom-scrollbar`}>
       <body>
         <GoogleAnalytics />
-        <LoadingProvider>
-          <AppContentWrapper>{children}</AppContentWrapper>
-        </LoadingProvider>
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: '#1e293b', // slate-800
+              color: '#e2e8f0',       // slate-200
+              border: '1px solid #334155', // slate-700
+            },
+          }}
+        />
+
+        <GoogleCaptchaWrapper>
+
+            <AuthProvider> 
+            <LoadingProvider>
+              {/* <AppContentWrapper>{children}</AppContentWrapper> */}
+              {children}
+            </LoadingProvider>
+            </AuthProvider>
+            
+        </GoogleCaptchaWrapper>
+
       </body>
     </html>
   );

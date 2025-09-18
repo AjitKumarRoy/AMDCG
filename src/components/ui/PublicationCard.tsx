@@ -4,19 +4,24 @@ import { useState, useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import { Button } from './Button';
 import { Users } from 'lucide-react';
+import { type JournalArticle as IJournalArticle } from '@/types';
 
-interface Publication {
-  id: string;
-  title: string;
-  authors: string[];
-  year: number;
-  link: string;
-  image: string;
-}
+type PublicationWithId = IJournalArticle & { _id: string };
+
+// interface Publication {
+//   id: string;
+//   title: string;
+//   authors: string[];
+//   year: number;
+//   link: string;
+//   image: string;
+// }
 
 interface PublicationCardProps {
-  publication: Publication;
+  publication: PublicationWithId;
 }
+
+const placeholderImage = '/images/Notices/publications/placeholder_publications.png';
 
 export const PublicationCard = ({ publication }: PublicationCardProps) => {
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -32,10 +37,14 @@ export const PublicationCard = ({ publication }: PublicationCardProps) => {
     }
   }, [publication.authors]);
 
+
+
+  const imageUrl = publication.image || placeholderImage;
+
   return (
     <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 p-4 bg-slate-950 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.15),rgba(255,255,255,0))] transition-all duration-300 hover:border-amber-500/50 flex flex-col group">
       <div className="relative mb-4 h-56 w-full overflow-hidden rounded-lg">
-        <Image src={publication.image} alt={publication.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+        <Image src={imageUrl} alt={publication.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
         
         {/* --- UPDATED AUTHOR LIST OVERLAY --- */}
         <div 
@@ -67,7 +76,7 @@ export const PublicationCard = ({ publication }: PublicationCardProps) => {
         <h3 className="mb-4 text-lg font-bold text-white line-clamp-3 font-heading">{publication.title}</h3>
       </div>
       <div className="mt-auto">
-        <Button href={publication.link} variant="secondary" className="inline-flex w-full justify-center">
+        <Button href={`/publications/${publication.slug}`} variant="secondary" className="inline-flex w-full justify-center">
           View Publication
         </Button>
       </div>

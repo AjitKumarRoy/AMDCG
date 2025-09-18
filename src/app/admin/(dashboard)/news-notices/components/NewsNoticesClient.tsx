@@ -1,0 +1,61 @@
+"use client";
+
+import { Tab } from '@headlessui/react';
+import { Fragment } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { NewsArticleList } from './NewsArticleList';
+import { AnnouncementsList } from './AnnouncementsList';
+import { RecruitmentsList } from './RecruitmentsList';
+import { EventsList } from './EventsList';
+import { NewsTickerList } from './NewsTickerList';
+
+const tabs = [
+  { name: 'News Articles', id: 'news-articles' },
+  { name: 'Announcements', id: 'announcements' },
+  { name: 'Recruitments', id: 'recruitments' },
+  { name: 'Events', id: 'events' },
+  { name: 'News Ticker', id: 'news-ticker' },
+];
+
+export function NewsNoticesClient({ allNewsData }: { allNewsData: any }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const activeTab = searchParams.get('tab') || tabs[0].id;
+
+  const activeTabIndex = tabs.findIndex(tab => tab.id === activeTab);
+
+  const handleTabChange = (index: number) => {
+    const newTabId = tabs[index].id;
+    router.push(`${pathname}?tab=${newTabId}`);
+  };
+
+  return (
+    <div className="mt-8">
+      <Tab.Group selectedIndex={activeTabIndex} onChange={handleTabChange}>
+        <Tab.List className="flex flex-wrap items-center gap-4 border-b border-slate-800">
+          {tabs.map((tab) => (
+            <Tab as={Fragment} key={tab.id}>
+              {({ selected }) => (
+                <button
+                  className={`px-4 py-2 text-sm font-semibold transition-colors focus:outline-none ${
+                    selected ? 'border-b-2 border-amber-500 text-white' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  {tab.name}
+                </button>
+              )}
+            </Tab>
+          ))}
+        </Tab.List>
+        <Tab.Panels className="mt-6">
+          <Tab.Panel><NewsArticleList articles={allNewsData.newsArticles} /></Tab.Panel>
+          <Tab.Panel><AnnouncementsList announcements={allNewsData.announcements} /></Tab.Panel>
+          <Tab.Panel><RecruitmentsList recruitments={allNewsData.recruitments} /></Tab.Panel>
+          <Tab.Panel><EventsList events={allNewsData.events} /></Tab.Panel>
+          <Tab.Panel><NewsTickerList items={allNewsData.newsTicker} /></Tab.Panel>
+        </Tab.Panels>
+      </Tab.Group>
+    </div>
+  );
+}

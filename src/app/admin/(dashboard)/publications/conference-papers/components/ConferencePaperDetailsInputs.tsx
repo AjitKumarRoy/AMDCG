@@ -1,0 +1,52 @@
+"use client";
+
+import { useAutoSlug } from "@/hooks/useAutoSlug";
+import { type ConferencePaper as IConferencePaper } from "@/types";
+
+
+
+export function ConferencePaperDetailsInputs({ paper }: { paper?: IConferencePaper }) {
+  // Use the hook to get all the logic and state for title and slug
+  const { title, slug, handleTitleChange, handleSlugChange } = useAutoSlug({
+    initialTitle: paper?.title,
+    initialSlug: paper?.slug,
+  });
+
+  return (
+    <div className="p-4 rounded-lg border border-slate-700 bg-black/20 backdrop-blur-md space-y-4">
+      <label className="block text-base font-medium text-slate-200 font-heading">Paper Details</label>
+      <div className="space-y-6 pt-4 border-t border-slate-800">
+        <div>
+          <label htmlFor="title" className="block text-xs font-medium text-slate-400">Title <span className="text-red-500">*</span></label>
+          <textarea id="title" name="title" value={title} onChange={handleTitleChange} rows={3} className="mt-1 block w-full bg-slate-800/50 rounded-md border-slate-700 px-3 py-2.5 text-sm" required />
+        </div>
+
+        <div>
+          <label htmlFor="slug" className="block text-xs font-medium text-slate-400">Slug (URL) <span className="text-red-500">*</span></label>
+          <input id="slug" name="slug" value={slug} onChange={handleSlugChange} className="mt-1 block w-full bg-slate-800/50 rounded-md border-slate-700 px-3 py-2.5 text-sm" required />
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label htmlFor="journalOrConference" className="block text-xs font-medium text-slate-400">Conference Name <span className="text-red-500">*</span></label>
+            <input id="journalOrConference" name="journalOrConference" defaultValue={paper?.journalOrConference} placeholder="e.g., Materials Science & Technology 2016(MS&T 16)" className="mt-1 block w-full bg-slate-800/50 rounded-md border-slate-700 px-3 py-2.5 text-sm" required />
+          </div>
+          <div>
+            <label htmlFor="year" className="block text-xs font-medium text-slate-400">Year <span className="text-red-500">*</span></label>
+            <input id="year" name="year" type="number" defaultValue={paper?.year} placeholder="e.g., 2022" className="mt-1 block w-full bg-slate-800/50 rounded-md border-slate-700 px-3 py-2.5 text-sm" required />
+          </div>
+        </div>
+        
+        <div>
+          <label htmlFor="abstract" className="block text-xs font-medium text-slate-400">Abstract <span className="text-red-500">*</span></label>
+          <textarea id="abstract" name="abstract" defaultValue={paper?.abstract} rows={6} className="mt-1 block w-full bg-slate-800/50 rounded-md border-slate-700 px-3 py-2.5 text-sm" required />
+        </div>
+        
+        <div>
+          <label htmlFor="link" className="block text-xs font-medium text-slate-400">Publication Link <span className="text-red-500">*</span></label>
+          <input id="link" name="link" type="url" defaultValue={paper?.link} placeholder="e.g., https://www.sciencedirect.com/science/article/pii/S0925838824044888?via%3Dihub" className="mt-1 block w-full bg-slate-800/50 rounded-md border-slate-700 px-3 py-2.5 text-sm" required />
+        </div>
+      </div>
+    </div>
+  );
+}

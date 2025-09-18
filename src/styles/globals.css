@@ -228,3 +228,159 @@ body {
   min-width: 0;
   position: relative;
 }
+
+
+
+/* --- Full-Width Image Slider Styles for About Page--- */
+.embla-imageslider {
+  overflow: hidden;
+}
+.embla-imageslider__container {
+  display: flex;
+}
+.embla-imageslider__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  position: relative; /* Needed for next/image */
+}
+.embla-imageslider--fade .embla-imageslider__slide {
+  /* opacity: 0; */
+  transition: 0 0.4s ease-in-out;
+}
+.embla-imageslider--fade .embla-imageslider__slide.is-in-view {
+  opacity: 1;
+}
+
+
+/* Hide the Google reCAPTCHA badge */
+.grecaptcha-badge { 
+  visibility: hidden; 
+}
+
+
+
+
+
+
+
+/* --- Tiptap Rich Text Editor Styles --- */
+.ProseMirror {
+  /* This ensures the editor area takes up space even when empty */
+  min-height: 300px;
+}
+.ProseMirror:focus {
+  outline: none;
+}
+.ProseMirror p {
+  margin: 0;
+}
+
+
+
+
+
+/* --- Custom Styles for Rich Text Content  for blog slug page  --- */
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+.rich-text-content h1 {
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+}
+.rich-text-content h2 {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+}
+.rich-text-content h3 {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+}
+.rich-text-content p {
+  margin-bottom: 1rem;
+  line-height: 1.625;
+}
+.rich-text-content strong {
+  color: #fff;
+  font-weight: 600;
+}
+.rich-text-content em {
+  color: #cbd5e1; /* slate-300 */
+}
+/* --- CORRECTED LIST STYLES --- */
+.rich-text-content ul,
+.rich-text-content ol {
+  list-style-position: outside; /* Use 'outside' to align text correctly */
+  margin-bottom: 1rem;
+  padding-left: 1.5rem; /* Indent the entire list */
+}
+.rich-text-content ul {
+  list-style-type: disc;
+}
+.rich-text-content ol {
+  list-style-type: decimal;
+}
+.rich-text-content li {
+  margin-top: 0.5rem;
+  /* No padding-left is needed here */
+}
+/* --- Tiptap Editor Content Styles (LIGHT THEME) --- */
+.ProseMirror {
+  min-height: 300px;
+  color: #1e293b; /* slate-800 */
+}
+.ProseMirror:focus {
+  outline: none;
+}
+.ProseMirror p {
+  margin: 0;
+}
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: #0f172a; /* slate-900 */
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+.ProseMirror h1 { font-size: 1.875rem; }
+.ProseMirror h2 { font-size: 1.5rem; }
+.ProseMirror h3 { font-size: 1.25rem; }
+
+.ProseMirror ul,
+.ProseMirror ol {
+  list-style-position: outside; /* Use 'outside' to align text correctly */
+  margin-bottom: 1rem;
+  padding-left: 1.5rem; /* Indent the entire list */
+}
+.ProseMirror ul { list-style-type: disc; }
+.ProseMirror ol { list-style-type: decimal; }
+.ProseMirror li { margin-top: 0.25rem; }
+
+/* --- Optional: Add a light-themed scrollbar --- */
+.custom-scrollbar-light::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar-light::-webkit-scrollbar-track {
+  background: #f1f5f9; /* slate-100 */
+}
+.custom-scrollbar-light::-webkit-scrollbar-thumb {
+  background-color: #94a3b8; /* slate-400 */
+  border-radius: 10px;
+  border: 2px solid #f1f5f9;
+}
+/* --- ADD THIS NEW RULE FOR LINKS --- */
+.rich-text-content a {
+  /* color: #60a5fa;  */
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out;
+}
+.rich-text-content a:hover {
+  color: #38bdf8; /* A brighter sky-500 on hover */
+}
