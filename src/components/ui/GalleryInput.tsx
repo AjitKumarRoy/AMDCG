@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import Image from 'next/image';
-import { UploadCloud, Loader, X, Plus } from "lucide-react";
+import { Loader, X, Plus } from "lucide-react";
 
 interface GalleryInputProps {
   label: string;

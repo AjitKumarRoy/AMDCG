@@ -13,7 +13,7 @@ interface RichTextEditorProps {
 }
 
 export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
-    const [_, setForceUpdate] = useState(0);
+    const [, setForceUpdate] = useState(0);
 
     
   const editor = useEditor({

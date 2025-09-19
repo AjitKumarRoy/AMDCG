@@ -1,7 +1,7 @@
 export interface GalleryImage {
   title: string;
   image: string;
-  height: Number;
-  width: Number;
+  height: number;
+  width: number;
   date?: string;
 }

@@ -11,16 +11,24 @@ import { type NewsTicker as INewsTicker } from "@/types";
 export function LatestNewsTicker({ newsTicker }: { newsTicker: INewsTicker[] }) {
   const [index, setIndex] = useState(0);
 
-  if (!newsTicker || newsTicker.length === 0) {
-    return null; // Don't render anything if there are no items
-  }
+  
 
+  u// --- 1. MOVED useEffect before the early return ---
   useEffect(() => {
+    // Prevent timer from starting if there are no items
+    if (newsTicker.length === 0) return;
+
     const timer = setInterval(() => {
       setIndex(prevIndex => (prevIndex + 1) % newsTicker.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [newsTicker.length]); // --- 2. ADDED the missing dependency ---
+
+
+// Early return if there are no items to display
+  if (!newsTicker || newsTicker.length === 0) {
+    return null; // Don't render anything if there are no items
+  }
 
   const handlePrev = () => {
     setIndex(prevIndex => (prevIndex - 1 + newsTicker.length) % newsTicker.length);

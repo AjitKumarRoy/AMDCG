@@ -6,6 +6,15 @@ import { FilterBar } from './FilterBar';
 import { NoticeCard } from './NoticeCard';
 import { NoItemsCard } from '@/components/ui/NoItemsCard';
 import { Button } from '@/components/ui/Button';
+import { 
+  type NewsArticle, 
+  type Announcement, 
+  type Recruitment, 
+  type Event 
+} from '@/types'; // 1. Import the specific types
+
+// --- 2. Define a union type for all possible items ---
+type NoticeItem = (NewsArticle | Announcement | Recruitment | Event) & { _id: string, type: string };
 
 
 const INITIAL_LOAD = 9;
@@ -21,7 +30,7 @@ import {
   format
 } from 'date-fns';
 
-export function NewsAndEventsPageClient({ items }: { items: any[] }) {
+export function NewsAndEventsPageClient({ items }: { items: NoticeItem[] }) {
   const [selectedType, setSelectedType] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDateRange, setSelectedDateRange] = useState('All Time');

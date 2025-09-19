@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Mongoose } from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -8,14 +8,25 @@ if (!MONGODB_URI) {
   );
 }
 
-// This caching prevents new connections on every API call, which is much more efficient.
-let cached = (global as any).mongoose;
-
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+// --- 1. DEFINE A TYPE FOR THE CACHED CONNECTION ---
+interface MongooseCache {
+  conn: Mongoose | null;
+  promise: Promise<Mongoose> | null;
 }
 
-async function dbConnect() {
+// Tell TypeScript about our custom global variable
+declare global {
+  var mongoose: MongooseCache;
+}
+
+// --- 2. USE THE GLOBAL TYPE INSTEAD OF 'any' ---
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function dbConnect(): Promise<Mongoose> {
   if (cached.conn) {
     return cached.conn;
   }
@@ -36,7 +47,7 @@ async function dbConnect() {
     throw e;
   }
   
-  return cached.conn;
+  return cached.conn!;
 }
 
 export default dbConnect;

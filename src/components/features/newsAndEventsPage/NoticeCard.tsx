@@ -5,8 +5,17 @@ import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/Button';
+import { 
+  type NewsArticle, 
+  type Announcement, 
+  type Recruitment, 
+  type Event 
+} from '@/types';
 
-const getNoticeUrl = (item: any) => {
+
+type NoticeItem = (NewsArticle | Announcement | Recruitment | Event) & { _id: string, type: string };
+
+const getNoticeUrl = (item: NoticeItem) => {
   if (!item.slug) return '#';
   switch (item.type) {
     case 'News Article': return `/news-events/news/${item.slug}`;
@@ -28,7 +37,7 @@ const getPlaceholderImage = (type: string) => {
   }
 };
 
-export function NoticeCard({ item }: { item: any }) {
+export function NoticeCard({ item }: { item: NoticeItem }) {
   const imageUrl = item.image || getPlaceholderImage(item.type);
 
 

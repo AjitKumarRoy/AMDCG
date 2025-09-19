@@ -12,6 +12,9 @@ export const authOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" }
       },
+
+      // --- ADD THIS COMMENT TO DISABLE THE LINTING RULE ---
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(credentials, _req) {
         if (!credentials) return null;
         await dbConnect();

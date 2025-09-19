@@ -61,6 +61,7 @@ export function PhdApplicationForm({ onClose }: { onClose: () => void }) {
         toast.error(errorData.message || "Submission failed. Please try again.");
       }
     } catch (error) {
+      console.error("Error status:", error);
       toast.error("An unexpected error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -86,13 +87,13 @@ export function PhdApplicationForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label htmlFor="bachelorsDegree" className="block text-xs font-medium text-slate-400">Bachelor's Degree details <span className="text-red-500">*</span></label>
+        <label htmlFor="bachelorsDegree" className="block text-xs font-medium text-slate-400">Bachelor&apos;s Degree details <span className="text-red-500">*</span></label>
         <input id="bachelorsDegree" name="bachelorsDegree" type="text" placeholder="e.g., B.Tech in Mechanical Engg, 8.5 CGPA" className="mt-1 block w-full bg-slate-800/50 rounded-md border-slate-700 px-3 py-2.5 text-sm" required />
       </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="mastersDegree" className="block text-xs font-medium text-slate-400">Master's Degree (if any)</label>
+          <label htmlFor="mastersDegree" className="block text-xs font-medium text-slate-400">Master&apos;s Degree (if any)</label>
           <input id="mastersDegree" name="mastersDegree" type="text" placeholder="e.g., M.Tech in Materials Science" className="mt-1 block w-full bg-slate-800/50 rounded-md border-slate-700 px-3 py-2.5 text-sm" />
         </div>
         <div>

@@ -50,6 +50,7 @@ export function ContactForm() {
         toast.error(errorData.message || "Failed to send message.");
       }
     } catch (error) {
+      console.error("Error status:", error);
       toast.error("An unexpected error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);

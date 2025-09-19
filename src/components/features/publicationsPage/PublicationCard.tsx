@@ -4,6 +4,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { 
+  type JournalArticle,
+  type ConferencePaper,
+  type BookChapter,
+  type Patent
+} from '@/types';
+
+
+type PublicationItem = (JournalArticle | ConferencePaper | BookChapter | Patent) & { _id: string, type: string };
 
 // --- NEW: Helper function to get a placeholder based on type ---
 const getPlaceholderImage = (type: string) => {
@@ -18,7 +27,7 @@ const getPlaceholderImage = (type: string) => {
 
 
 // --- NEW: Helper function to generate the correct URL ---
-const getPublicationUrl = (publication: any) => {
+const getPublicationUrl = (publication: PublicationItem ) => {
   if (!publication.slug) return '#';
   
   switch (publication.type) {
@@ -32,7 +41,7 @@ const getPublicationUrl = (publication: any) => {
 
 
 
-export function PublicationCard({ publication }: { publication: any }) {
+export function PublicationCard({ publication }: { publication: PublicationItem }) {
   const getTypeBadgeColor = (type: string) => {
     switch (type) {
       case 'Journal Article': return 'bg-sky-800/50 text-sky-300 border-sky-500/30';

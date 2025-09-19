@@ -19,7 +19,7 @@ export function ContactDetails() {
         Contact Information
       </Title>
       <p className="text-slate-400">
-        We're here to help and answer any question you might have. We look forward to hearing from you.
+        We&apos;re here to help and answer any question you might have. We look forward to hearing from you.
       </p>
       <div className="space-y-4 pt-4 border-t border-slate-800">
         <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-4 text-slate-300 hover:text-amber-400">

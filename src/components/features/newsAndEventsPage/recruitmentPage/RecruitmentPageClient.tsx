@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { type Recruitment as IRecruitment } from '@/types';
 import { Section } from '@/components/ui/Section';

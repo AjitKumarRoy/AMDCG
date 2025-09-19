@@ -14,7 +14,7 @@ export function CtaSection() {
           Ready to Collaborate or Join Us?
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-slate-400">
-          We are always open to new partnerships and welcoming passionate individuals to our team. Let's connect and explore the possibilities.
+          We are always open to new partnerships and welcoming passionate individuals to our team. Let&apos;s connect and explore the possibilities.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button href="/careers" variant="primary">

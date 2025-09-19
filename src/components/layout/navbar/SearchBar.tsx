@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useState, useRef } from "react";
 import Fuse from "fuse.js";
 // import searchData from "@/../public/searchIndex.json";
 import Link from "next/link";

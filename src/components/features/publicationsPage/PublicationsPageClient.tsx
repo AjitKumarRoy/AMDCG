@@ -6,11 +6,20 @@ import { FilterBar } from './FilterBar';
 import { PublicationCard } from './PublicationCard';
 import { NoItemsCard } from '@/components/ui/NoItemsCard';
 import { Button } from '@/components/ui/Button';
+import { 
+  type JournalArticle,
+  type ConferencePaper,
+  type BookChapter,
+  type Patent
+} from '@/types';
+
+
+type PublicationItem = (JournalArticle | ConferencePaper | BookChapter | Patent) & { _id: string, type: string };
 
 const INITIAL_LOAD = 9;
 const LOAD_MORE_COUNT = 3;
 
-export function PublicationsPageClient({ publications }: { publications: any[] }) {
+export function PublicationsPageClient({ publications }: { publications: PublicationItem[] }) {
   const [selectedType, setSelectedType] = useState('All');
   const [selectedYear, setSelectedYear] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');

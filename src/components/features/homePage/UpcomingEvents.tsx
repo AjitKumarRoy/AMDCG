@@ -34,7 +34,7 @@ export function UpcomingEvents({ events }: { events: EventWithId[] }) {
       .filter(event => new Date(event.date).getTime() >= startOfToday.getTime())
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
       .slice(0, 20);
-  }, []);
+  }, [events]);
 
   return (
      <div className="relative h-full w-full rounded-2xl border border-white/10 p-4 bg-slate-950 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.15),rgba(255,255,255,0))] sm:p-6 flex flex-col">

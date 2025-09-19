@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment } from 'react';
-import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react';
 import { type Facility as IFacility } from '@/types';
 import { ImageCarousel } from '@/components/ui/ImageCarousel';

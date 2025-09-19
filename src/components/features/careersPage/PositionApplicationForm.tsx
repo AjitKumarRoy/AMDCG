@@ -59,6 +59,7 @@ export function PositionApplicationForm({ onClose }: { onClose: () => void }) {
         toast.error(errorData.message || "Submission failed. Please try again.");
       }
     } catch (error) {
+      console.error("Error status:", error);
       toast.error("An unexpected error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
