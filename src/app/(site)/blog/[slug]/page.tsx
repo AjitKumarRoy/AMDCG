@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/blog/placeholder_blog.png';
 
-export default async function BlogPostPage({ params }: PostPageProps }) {
+export default async function BlogPostPage({ params }: PostPageProps ) {
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
