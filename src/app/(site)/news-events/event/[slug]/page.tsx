@@ -9,7 +9,7 @@ import { Calendar, MapPin, Link as LinkIcon, Download } from 'lucide-react';
 import { format } from 'date-fns';
 
 type EventPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getEventBySlug(slug: string): Promise<IEvent & { _id: string } | null> {
@@ -27,7 +27,9 @@ async function getEventBySlug(slug: string): Promise<IEvent & { _id: string } | 
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: EventPageProps): Promise<Metadata> {
-  const event = await getEventBySlug(params.slug);
+  const { slug } = await params;
+  const event = await getEventBySlug(slug)
+  
   if (!event) return { title: 'Event Not Found' };
 
   const description = event.description || `Event: ${event.title} on ${new Date(event.date).toLocaleDateString()}`;
@@ -68,7 +70,8 @@ const placeholderImage = '/images/Notices/event/placeholder_event.png';
 
 
 export default async function EventPage({ params }: EventPageProps) {
-  const event = await getEventBySlug(params.slug);
+  const { slug } = await params;
+  const event = await getEventBySlug(slug)
 
   if (!event) {
     notFound();

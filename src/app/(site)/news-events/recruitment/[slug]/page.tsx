@@ -5,7 +5,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { RecruitmentPageClient } from '@/components/features/newsAndEventsPage/recruitmentPage/RecruitmentPageClient';
 
 type RecruitmentPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getRecruitmentBySlug(slug: string): Promise<IRecruitment & { _id: string } | null> {
@@ -23,7 +23,9 @@ async function getRecruitmentBySlug(slug: string): Promise<IRecruitment & { _id:
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: RecruitmentPageProps): Promise<Metadata> {
-  const recruitment = await getRecruitmentBySlug(params.slug);
+  const { slug } = await params;
+  const recruitment = await getRecruitmentBySlug(slug);
+
   if (!recruitment) return { title: 'Recruitment Not Found' };
 
   const description = recruitment.description || `Job Opportunity at AMDCG: ${recruitment.title}`;
@@ -62,7 +64,8 @@ const pageBanner = '/images/pagesBanner/banner6.png';
 
 
 export default async function RecruitmentPage({ params }: { params: { slug: string } }) {
-  const recruitment = await getRecruitmentBySlug(params.slug);
+  const { slug } = await params;
+  const recruitment = await getRecruitmentBySlug(slug);
 
   if (!recruitment) {
     notFound();

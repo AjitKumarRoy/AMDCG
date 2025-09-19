@@ -10,7 +10,7 @@ import { Calendar,  LinkIcon } from 'lucide-react';
 import { format } from 'date-fns';
 
 type ArticlePageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getArticleBySlug(slug: string): Promise<INewsArticle & { _id: string } | null> {
@@ -28,7 +28,9 @@ async function getArticleBySlug(slug: string): Promise<INewsArticle & { _id: str
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
-  const article = await getArticleBySlug(params.slug);
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug)
+
   if (!article) return { title: 'News Not Found' };
 
   const keywords = ['AMDCG', 'IIT Bhilai', 'News', ...(article.title.split(' '))];
@@ -65,7 +67,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 const placeholderImage = '/images/Notices/news/placeholder_news.png';
 
 export default async function NewsArticlePage({ params }: ArticlePageProps) {
-  const article = await getArticleBySlug(params.slug);
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug)
 
   if (!article) {
     notFound();
