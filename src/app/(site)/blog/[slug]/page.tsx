@@ -48,7 +48,7 @@ const placeholderImage = '/images/blog/placeholder_blog.png';
 
       // --- ADD THIS COMMENT TO DISABLE THE LINTING RULE ---
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function BlogPostPage({ params }: { params: { slug: string } } ) {
+export default async function BlogPostPage({ params }: PostPageProps ) {
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
