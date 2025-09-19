@@ -10,8 +10,7 @@ import { format } from 'date-fns';
 import DOMPurify from 'isomorphic-dompurify';
 import { TeamMember } from '@/lib/models';
 
-// Add @ts-ignore on the line above the component definition
-// @ts-expect-error
+
 type PostPageProps = {
   params: { slug: string };
 };
@@ -29,8 +28,7 @@ async function getPostBySlug(slug: string): Promise<IBlogPost & { _id: string } 
   }
 }
 
-// Add @ts-ignore on the line above the component definition
-// @ts-expect-error
+
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return { title: 'Post Not Found' };
@@ -38,7 +36,24 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
     title: post.title,
     description: post.excerpt,
     keywords: post.tags,
+    alternates: {
+      canonical: `https://research.iitbhilai.ac.in/amdcg/blog/${post.slug}`,
+    },
     openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `https://research.iitbhilai.ac.in/amdcg/blog/${post.slug}`,
+      images: [
+        {
+          url: post.image,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
       images: [post.image],
@@ -46,12 +61,12 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   };
 }
 
+
 const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/blog/placeholder_blog.png';
 
 
-// Add @ts-ignore on the line above the component definition
-// @ts-expect-error
+
 export default async function BlogPostPage({ params }: PostPageProps ) {
   const post = await getPostBySlug(params.slug);
 
