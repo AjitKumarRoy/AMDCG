@@ -4,7 +4,7 @@ import dbConnect from "@/lib/dbConnect"
 import { User } from "@/lib/models"
 import bcrypt from "bcryptjs"
 
-export const authOptions = {
+const authOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -13,9 +13,7 @@ export const authOptions = {
         password: { label: "Password", type: "password" }
       },
 
-      // --- ADD THIS COMMENT TO DISABLE THE LINTING RULE ---
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      async authorize(credentials, _req) {
+      async authorize(credentials) {
         if (!credentials) return null;
         await dbConnect();
         
