@@ -13,7 +13,7 @@ export function LatestNewsTicker({ newsTicker }: { newsTicker: INewsTicker[] }) 
 
   
 
-  u// --- 1. MOVED useEffect before the early return ---
+  // --- 1. MOVED useEffect before the early return ---
   useEffect(() => {
     // Prevent timer from starting if there are no items
     if (newsTicker.length === 0) return;
