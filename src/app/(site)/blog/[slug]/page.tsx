@@ -45,6 +45,9 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/blog/placeholder_blog.png';
 
+
+      // --- ADD THIS COMMENT TO DISABLE THE LINTING RULE ---
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function BlogPostPage({ params }: { params: { slug: string } } ) {
   const post = await getPostBySlug(params.slug);
 
