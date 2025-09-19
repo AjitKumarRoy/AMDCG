@@ -41,7 +41,7 @@ export async function createTeamMember(formData: FormData) {
             revalidatePath("/admin/team");
             //   redirect("/admin/team");
     } catch (error: unknown) { // Use 'unknown' instead of 'any'
-    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       throw new Error("A team member with this slug or email already exists.");
     }
     throw new Error("Failed to create team member.");
@@ -87,7 +87,7 @@ export async function updateTeamMember(id: string, formData: FormData) {
       }
     //   redirect("/admin/team");
   } catch (error: unknown) { // Use 'unknown' instead of 'any'
-    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       throw new Error("A team member with this slug or email already exists.");
     }
     throw new Error("Failed to update team member.");
