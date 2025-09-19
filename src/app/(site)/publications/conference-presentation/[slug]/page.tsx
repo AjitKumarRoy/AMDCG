@@ -20,6 +20,7 @@ async function getPaperBySlug(slug: string): Promise<IConferencePaper & { _id: s
     const data = await res.json();
     return data.data;
   } catch (error) {
+    console.error("Failed to fetch post:", error);
     return null;
   }
 }

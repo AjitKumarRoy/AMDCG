@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { GalleryPageClient } from '@/components/features/galleryPage/GalleryPageClient';
 import { GalleryImage } from '@/lib/models';
 import dbConnect from '@/lib/dbConnect';
+import { type GalleryImage as IGalleryImage } from '@/types';
+
+type GalleryImageId = IGalleryImage & { _id: string };
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -51,11 +54,10 @@ export default async function GalleryPage() {
     "@type": "ImageGallery",
     "name": "AMDCG Research Group Gallery",
     "description": "A collection of images showcasing the research, equipment, events, and people of the AMDCG at IIT Bhilai.",
-    "associatedMedia": images.map((img: any) => ({
+    "associatedMedia": images.map((img: GalleryImageId) => ({
       "@type": "ImageObject",
       "contentUrl": img.image,
       "name": img.title,
-      "description": img.description,
       "datePublished": img.date
     }))
   };

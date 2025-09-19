@@ -2,6 +2,14 @@ import type { Metadata } from 'next';
 import { NewsAndEventsPageClient } from '@/components/features/newsAndEventsPage/NewsAndEventsPageClient';
 import { NewsArticle, Announcement, Recruitment, Event } from '@/lib/models';
 import dbConnect from '@/lib/dbConnect';
+import { 
+  type NewsArticle as INewsArticle, 
+  type Announcement as IAnnouncement, 
+  type Recruitment as IRecruitment, 
+  type Event as IEvent 
+} from '@/types';
+
+type NoticeItem = (INewsArticle | IAnnouncement | IRecruitment | IEvent) & { _id: string };
 
 export const metadata: Metadata = {
   title: "News & Events",
@@ -62,7 +70,7 @@ export default async function NewsAndEventsPage() {
     "@type": "ItemList",
     "name": "AMDCG News & Events",
     "description": "A list of news, announcements, recruitments, and events from the AMDCG research group.",
-    "itemListElement": allItems.map((item: any, index: number) => ({
+    "itemListElement": allItems.map((item: NoticeItem, index: number) => ({
       "@type": "ListItem",
       "position": index + 1,
       "url": `https://research.iitbhilai.ac.in/amdcg/news-events/${item.slug}`, // Generic link

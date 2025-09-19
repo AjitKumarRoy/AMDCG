@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // The helper function to generate a slug
 const generateSlug = (text: string): string => {

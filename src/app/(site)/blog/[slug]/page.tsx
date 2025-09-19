@@ -22,6 +22,7 @@ async function getPostBySlug(slug: string): Promise<IBlogPost & { _id: string } 
     const data = await res.json();
     return data.data;
   } catch (error) {
+    console.error("Failed to fetch post:", error); 
     return null;
   }
 }

@@ -19,6 +19,7 @@ async function getPatentBySlug(slug: string): Promise<IPatent & { _id: string } 
     const data = await res.json();
     return data.data;
   } catch (error) {
+    console.error("Failed to fetch post:", error);
     return null;
   }
 }

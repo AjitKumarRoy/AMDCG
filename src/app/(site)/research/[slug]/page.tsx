@@ -21,6 +21,7 @@ async function getProjectBySlug(slug: string): Promise<IProject & { _id: string 
     const data = await res.json();
     return data.data;
   } catch (error) {
+    console.error("Failed to fetch post:", error);
     return null;
   }
 }

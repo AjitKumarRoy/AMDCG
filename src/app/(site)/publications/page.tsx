@@ -2,6 +2,14 @@ import type { Metadata } from 'next';
 import { PublicationsPageClient } from '@/components/features/publicationsPage/PublicationsPageClient';
 import { JournalArticle, ConferencePaper, BookChapter, Patent } from '@/lib/models';
 import dbConnect from '@/lib/dbConnect';
+import { 
+  type JournalArticle as IJournalArticle, 
+  type ConferencePaper as IConferencePaper, 
+  type BookChapter as IBookChapter, 
+  type Patent as IPatent
+} from '@/types';
+
+type PublicationItem = (IJournalArticle | IConferencePaper | IBookChapter | IPatent) & { _id: string };
 
 export const metadata: Metadata = {
   title: "Publications",
@@ -66,7 +74,7 @@ export default async function PublicationsPage() {
     "@type": "ItemList",
     "name": "AMDCG Publications",
     "description": "A list of publications by the Advanced Materials Development and Characterization Group.",
-    "itemListElement": publications.map((pub: any, index: number) => ({
+    "itemListElement": publications.map((pub: PublicationItem, index: number) => ({
       "@type": "ListItem",
       "position": index + 1,
       "url": `https://research.iitbhilai.ac.in/amdcg/publications/${pub.slug}`, // Generic slug link

@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { CareersPageClient } from '@/components/features/careersPage/CareersPageClient';
 import { Recruitment } from '@/lib/models';
 import dbConnect from '@/lib/dbConnect';
+import { type Recruitment as IRecruitment } from '@/types';
+
+type RecruitmentId = IRecruitment & { _id: string };
 
 // --- SEO for the Careers Page ---
 export const metadata: Metadata = {
@@ -47,7 +50,7 @@ export default async function CareersPage() {
 
 
       {/* --- ADDED STRUCTURED DATA FOR EACH JOB POSTING  ///  only for seo purpose --- */}
-      {recruitments.map((job: any) => (
+      {recruitments.map((job: RecruitmentId) => (
         <script
           key={job._id}
           type="application/ld+json"

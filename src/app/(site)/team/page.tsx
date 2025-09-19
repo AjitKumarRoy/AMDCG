@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { TeamPageClient } from '@/components/features/teamPage/TeamPageClient';
 import { TeamMember } from '@/lib/models';
 import dbConnect from '@/lib/dbConnect';
+import { type TeamMember as ITeamMember } from '@/types';
+
+type TeamMemberId = ITeamMember & { _id: string };
 
 export const metadata: Metadata = {
   title: "Our Team",
@@ -48,7 +51,7 @@ export default async function TeamPage() {
     "@type": "ItemList",
     "name": "AMDCG Team Members",
     "description": "A list of the core team, scholars, and alumni of the AMDCG research group.",
-    "itemListElement": allMembers.map((member: any, index: number) => ({
+    "itemListElement": allMembers.map((member: TeamMemberId, index: number) => ({
       "@type": "ListItem",
       "position": index + 1,
       "item": {

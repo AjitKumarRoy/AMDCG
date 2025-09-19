@@ -20,6 +20,7 @@ async function getArticleBySlug(slug: string): Promise<IJournalArticle & { _id: 
     const data = await res.json();
     return data.data;
   } catch (error) {
+    console.error("Failed to fetch post:", error);
     return null;
   }
 }

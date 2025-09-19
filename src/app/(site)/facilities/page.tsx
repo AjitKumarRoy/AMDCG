@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { FacilitiesPageClient } from '@/components/features/facilitiesPage/FacilitiesPageClient';
 import { Facility } from '@/lib/models';
 import dbConnect from '@/lib/dbConnect';
+import { type Facility as IFacility } from '@/types';
+
+type FacilityId = IFacility & { _id: string };
 
 export const metadata: Metadata = {
   title: "Our Facilities",
@@ -46,7 +49,7 @@ export default async function FacilitiesPage() {
     "@type": "ItemList",
     "name": "AMDCG Research Facilities",
     "description": "A list of research equipment and facilities available at the AMDCG.",
-    "itemListElement": facilities.map((facility: any, index: number) => ({
+    "itemListElement": facilities.map((facility: FacilityId, index: number) => ({
       "@type": "ListItem",
       "position": index + 1,
       "item": {

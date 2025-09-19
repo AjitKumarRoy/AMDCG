@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { ResearchPageClient } from '@/components/features/researchPage/ResearchPageClient';
 import { Project } from '@/lib/models';
 import dbConnect from '@/lib/dbConnect';
+import { type Project as IProject } from '@/types';
+
+type ProjectId = IProject & { _id: string };
 
 export const metadata: Metadata = {
   title: "Research Projects",
@@ -47,7 +50,7 @@ export default async function ResearchPage() {
     "@type": "ItemList",
     "name": "AMDCG Research Projects",
     "description": "A list of research projects conducted by the Advanced Materials Development and Characterization Group.",
-    "itemListElement": projects.map((project: any, index: number) => ({
+    "itemListElement": projects.map((project: ProjectId, index: number) => ({
       "@type": "ListItem",
       "position": index + 1,
       "url": `https://research.iitbhilai.ac.in/amdcg/projects/${project.slug}`,

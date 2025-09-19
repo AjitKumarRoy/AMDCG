@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { BlogPageClient } from '@/components/features/blogPage/BlogPageClient';
 import { BlogPost } from '@/lib/models';
 import dbConnect from '@/lib/dbConnect';
+import { type BlogPost as IBlogPost } from '@/types';
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -46,7 +47,7 @@ export default async function BlogPage() {
     "@type": "Blog",
     "name": "AMDCG Research Blog",
     "description": "The official blog of the Advanced Materials Development and Characterization Group at IIT Bhilai.",
-    "blogPost": posts.map((post: any) => ({
+    "blogPost": posts.map((post: IBlogPost) => ({
       "@type": "BlogPosting",
       "headline": post.title,
       "url": `https://research.iitbhilai.ac.in/amdcg/blog/${post.slug}`
