@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: RecruitmentPageProps): Promis
 const pageBanner = '/images/pagesBanner/banner6.png';
 
 
-export default async function RecruitmentPage({ params }: { params: { slug: string } }) {
+export default async function RecruitmentPage({ params }: RecruitmentPageProps) {
   const { slug } = await params;
   const recruitment = await getRecruitmentBySlug(slug);
 
