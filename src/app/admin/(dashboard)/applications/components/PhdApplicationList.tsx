@@ -43,7 +43,7 @@ export function PhdApplicationList({ applications }: { applications: AppWithId[]
   };
 
   // Pagination Logic
-  const totalPages = Math.ceil(applications.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(localApplications.length / ITEMS_PER_PAGE);
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentApplications = applications.slice(indexOfFirstItem, indexOfLastItem);

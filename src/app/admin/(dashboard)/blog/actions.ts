@@ -25,7 +25,7 @@ export async function createBlogPost(formData: FormData) {
     revalidatePath("/blog");
   } catch (error: unknown) { // Use 'unknown' instead of 'any'
     // Check if the error is a MongoDB duplicate key error
-    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       throw new Error("A blog post with this slug already exists.");
     }
     throw new Error("Failed to create blog post.");
@@ -66,7 +66,7 @@ export async function updateBlogPost(id: string, formData: FormData) {
       revalidatePath(`/blog/${updatedPostData.slug}`);
     }
   } catch (error: unknown) { // Use 'unknown' instead of 'any'
-    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       throw new Error("A blog post with this slug already exists.");
     }
     throw new Error("Failed to update blog post.");
