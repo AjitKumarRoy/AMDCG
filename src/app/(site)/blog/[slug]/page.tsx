@@ -27,7 +27,7 @@ async function getPostBySlug(slug: string): Promise<IBlogPost & { _id: string } 
   }
 }
 
-export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PostPageProps) {
   const post = await getPostBySlug(params.slug);
   if (!post) return { title: 'Post Not Found' };
   return {
@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: PostPageProps ) {
   const sanitizedContent = DOMPurify.sanitize(post.content);
 
 
-  
+
 
   const structuredData = {
     "@context": "https://schema.org",
