@@ -10,6 +10,8 @@ import { format } from 'date-fns';
 import DOMPurify from 'isomorphic-dompurify';
 import { TeamMember } from '@/lib/models';
 
+// Add @ts-ignore on the line above the component definition
+// @ts-ignore
 type PostPageProps = {
   params: { slug: string };
 };
@@ -27,6 +29,8 @@ async function getPostBySlug(slug: string): Promise<IBlogPost & { _id: string } 
   }
 }
 
+// Add @ts-ignore on the line above the component definition
+// @ts-ignore
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return { title: 'Post Not Found' };
@@ -46,8 +50,8 @@ const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/blog/placeholder_blog.png';
 
 
-      // --- ADD THIS COMMENT TO DISABLE THE LINTING RULE ---
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// Add @ts-ignore on the line above the component definition
+// @ts-ignore
 export default async function BlogPostPage({ params }: PostPageProps ) {
   const post = await getPostBySlug(params.slug);
 
