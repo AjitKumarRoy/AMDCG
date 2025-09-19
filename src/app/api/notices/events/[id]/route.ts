@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type RouteHandlerContext } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { Event } from '@/lib/models';
 
 // GET a single event by ID
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const event = await Event.findById(id);
@@ -19,8 +19,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
 }
 
 // UPDATE a specific event
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const body = await request.json();
@@ -36,8 +36,8 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // DELETE a specific event
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const deletedEvent = await Event.deleteOne({ _id: id });

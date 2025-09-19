@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type RouteHandlerContext } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { BookChapter } from '@/lib/models';
 
 // GET a single chapter by ID
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
   try {
     await dbConnect();
-    const chapter = await BookChapter.findById(params.id);
+    const chapter = await BookChapter.findById(context.params);
     if (!chapter) {
       return NextResponse.json({ success: false, message: "Chapter not found" }, { status: 404 });
     }
@@ -18,11 +18,11 @@ export async function GET(request: Request, { params }: { params: { id: string }
 }
 
 // UPDATE a specific chapter
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
   try {
     await dbConnect();
     const body = await request.json();
-    const chapter = await BookChapter.findByIdAndUpdate(params.id, body, { new: true, runValidators: true });
+    const chapter = await BookChapter.findByIdAndUpdate(context.params, body, { new: true, runValidators: true });
     if (!chapter) {
       return NextResponse.json({ success: false, message: "Chapter not found" }, { status: 404 });
     }
@@ -34,10 +34,10 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // DELETE a specific chapter
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
   try {
     await dbConnect();
-    const deletedChapter = await BookChapter.deleteOne({ _id: params.id });
+    const deletedChapter = await BookChapter.deleteOne({ _id: context.params });
     if (deletedChapter.deletedCount === 0) {
       return NextResponse.json({ success: false, message: "Chapter not found" }, { status: 404 });
     }

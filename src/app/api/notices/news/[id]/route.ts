@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type RouteHandlerContext } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { NewsArticle } from '@/lib/models';
 
 // GET a single article by ID
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const article = await NewsArticle.findById(id);
@@ -19,8 +19,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
 }
 
 // UPDATE a specific article
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const body = await request.json();
@@ -36,8 +36,8 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // DELETE a specific article
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const deletedArticle = await NewsArticle.deleteOne({ _id: id });
