@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/Button';
 import { Users, BookText, Calendar, Link as LinkIcon } from 'lucide-react';
 
 type PaperPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getPaperBySlug(slug: string): Promise<IConferencePaper & { _id: string } | null> {
@@ -27,7 +27,9 @@ async function getPaperBySlug(slug: string): Promise<IConferencePaper & { _id: s
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: PaperPageProps): Promise<Metadata> {
-  const paper = await getPaperBySlug(params.slug);
+  const { slug } = await params;
+  const paper = await getPaperBySlug(slug);
+
   if (!paper) return { title: 'Publication Not Found' };
 
   const keywords = ['Conference Paper', 'AMDCG', 'IIT Bhilai', ...paper.authors, ...(paper.title.split(' '))];
@@ -60,7 +62,8 @@ const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/Notices/publications/placeholder_conference.png';
 
 export default async function ConferencePaperPage({ params }: PaperPageProps) {
-  const paper = await getPaperBySlug(params.slug);
+  const { slug } = await params;
+  const paper = await getPaperBySlug(slug);
 
   if (!paper) {
     notFound();

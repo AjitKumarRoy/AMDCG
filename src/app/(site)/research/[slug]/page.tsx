@@ -9,7 +9,7 @@ import { PageHero } from '@/components/ui/PageHero';
 
 
 type ProjectPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 // Helper function to fetch a single project by its slug
@@ -28,7 +28,10 @@ async function getProjectBySlug(slug: string): Promise<IProject & { _id: string 
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
+
+
   if (!project) {
     return { title: 'Project Not Found' };
   }
@@ -64,7 +67,8 @@ const placeholderImage = '/images/projects/placeholder_project.png';
 
 // This is the main page component
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound(); // Redirect to a 404 page if the project isn't found

@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/Button';
 import { Users, BookText, Calendar, Link as LinkIcon } from 'lucide-react';
 
 type ArticlePageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getArticleBySlug(slug: string): Promise<IJournalArticle & { _id: string } | null> {
@@ -27,7 +27,9 @@ async function getArticleBySlug(slug: string): Promise<IJournalArticle & { _id: 
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
-  const article = await getArticleBySlug(params.slug);
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+
   if (!article) return { title: 'Publication Not Found' };
 
   const keywords = ['Journal Article', 'AMDCG', 'IIT Bhilai', ...article.authors, ...(article.title.split(' '))];
@@ -60,7 +62,8 @@ const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/Notices/publications/placeholder_journal.png';
 
 export default async function JournalArticlePage({ params }: ArticlePageProps) {
-  const article = await getArticleBySlug(params.slug);
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
 
   if (!article) {
     notFound();

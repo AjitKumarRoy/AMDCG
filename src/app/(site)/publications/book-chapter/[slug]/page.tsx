@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/Button';
 import { Users, BookText, Calendar, Link as LinkIcon } from 'lucide-react';
 
 type ChapterPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getChapterBySlug(slug: string): Promise<IBookChapter & { _id: string } | null> {
@@ -27,7 +27,9 @@ async function getChapterBySlug(slug: string): Promise<IBookChapter & { _id: str
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: ChapterPageProps): Promise<Metadata> {
-  const chapter = await getChapterBySlug(params.slug);
+  const { slug } = await params;
+  const chapter = await getChapterBySlug(slug);
+
   if (!chapter) return { title: 'Publication Not Found' };
 
   const keywords = ['Book Chapter', 'AMDCG', 'IIT Bhilai', ...chapter.authors, ...(chapter.title.split(' '))];
@@ -59,7 +61,8 @@ const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/Notices/publications/placeholder_book.png';
 
 export default async function BookChapterPage({ params }: ChapterPageProps) {
-  const chapter = await getChapterBySlug(params.slug);
+  const { slug } = await params;
+  const chapter = await getChapterBySlug(slug);
 
   if (!chapter) {
     notFound();

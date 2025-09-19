@@ -9,7 +9,7 @@ import { Title } from '@/components/ui/Title';
 import { Linkedin, GraduationCap, LinkIcon, Twitter, Github, FlaskConical, Mail, Phone, Briefcase, UserCircle } from 'lucide-react';
 
 type MemberPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 // Fetches a single team member by slug
@@ -28,7 +28,9 @@ async function getMemberBySlug(slug: string): Promise<ITeamMember & { _id: strin
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: MemberPageProps): Promise<Metadata> {
-  const member = await getMemberBySlug(params.slug);
+  const { slug } = await params;
+  const member = await getMemberBySlug(slug);
+
   if (!member) return { title: 'Member Not Found' };
 
   const description = member.bio || `Profile of ${member.name}, ${member.role} at AMDCG.`;
@@ -63,7 +65,8 @@ const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/teamMembers/personPlaceholder.webp';
 
 export default async function TeamMemberPage({ params }: MemberPageProps) {
-  const member = await getMemberBySlug(params.slug);
+  const { slug } = await params;
+  const member = await getMemberBySlug(slug);
 
   if (!member) {
     notFound();

@@ -8,7 +8,7 @@ import { Title } from '@/components/ui/Title';
 import { Users, FileBadge, Calendar } from 'lucide-react';
 
 type PatentPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getPatentBySlug(slug: string): Promise<IPatent & { _id: string } | null> {
@@ -26,7 +26,9 @@ async function getPatentBySlug(slug: string): Promise<IPatent & { _id: string } 
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: PatentPageProps): Promise<Metadata> {
-  const patent = await getPatentBySlug(params.slug);
+  const { slug } = await params;
+  const patent = await getPatentBySlug(slug);
+
   if (!patent) return { title: 'Publication Not Found' };
 
   const keywords = ['Patent', 'AMDCG', 'IIT Bhilai', ...patent.authors, ...(patent.title.split(' '))];
@@ -57,7 +59,8 @@ export async function generateMetadata({ params }: PatentPageProps): Promise<Met
 const placeholderImage = '/images/Notices/publications/placeholder_patent.png';
 
 export default async function PatentPage({ params }: PatentPageProps) {
-  const patent = await getPatentBySlug(params.slug);
+  const { slug } = await params;
+  const patent = await getPatentBySlug(slug);
 
   if (!patent) {
     notFound();
