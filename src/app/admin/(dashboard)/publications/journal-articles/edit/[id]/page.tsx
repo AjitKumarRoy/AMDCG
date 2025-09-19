@@ -1,3 +1,4 @@
+import type { PageProps } from 'next';
 import { JournalArticleForm } from "../../components/JournalArticleForm";
 import dbConnect from "@/lib/dbConnect";
 import { JournalArticle } from "@/lib/models";
@@ -8,7 +9,9 @@ async function getArticle(id: string) {
   return JSON.parse(JSON.stringify(article));
 }
 
-export default async function EditJournalArticlePage({ params }: { params: { id: string } }) {
-  const article = await getArticle(params.id);
+export default async function EditJournalArticlePage({ params }: PageProps<{ id: string }>) {
+  const { id } = params;
+  const article = await getArticle(id);
+
   return <JournalArticleForm article={article} />;
 }
