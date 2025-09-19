@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type RouteHandlerContext } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { Facility } from '@/lib/models';
 
-export async function GET(request: Request, context: { params: { id: string } }) {
+export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
   const { id } = context.params;
   try {
     await dbConnect();
