@@ -4,7 +4,7 @@ import { TeamMember } from '@/lib/models';
 
 
 // --- GET a single team member by ID ---
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
   const { id } = context.params;
   try {
     await dbConnect();
@@ -21,7 +21,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
 
 // UPDATE a specific team member
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
   const { id } = context.params;
   try {
     await dbConnect();
@@ -41,7 +41,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // DELETE a specific team member
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
   const { id } = context.params;
   try {
     await dbConnect();
