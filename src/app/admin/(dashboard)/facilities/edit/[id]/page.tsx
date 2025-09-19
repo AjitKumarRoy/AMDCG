@@ -1,3 +1,4 @@
+import type { PageProps } from 'next';
 import { FacilityForm } from "../../components/FacilityForm";
 import { Facility } from "@/lib/models";
 import dbConnect from "@/lib/dbConnect";
@@ -9,7 +10,9 @@ async function getFacility(id: string) {
   return JSON.parse(JSON.stringify(facility));
 }
 
-export default async function EditFacilityPage({ params }: { params: { id: string } }) {
-  const facility = await getFacility(params.id);
+export default async function EditFacilityPage({ params }: PageProps<{ id: string }>) {
+  const { id } = await params;        
+  const facility = await getFacility(id);
+
   return <FacilityForm facility={facility} />;
 }

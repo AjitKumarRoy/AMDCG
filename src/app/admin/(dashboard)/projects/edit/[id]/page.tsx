@@ -15,5 +15,6 @@ async function getProject(id: string): Promise<ProjectDocument> {
 export default async function EditProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const project = await getProject(id);
+  
   return <ProjectForm project={project} />;
 }

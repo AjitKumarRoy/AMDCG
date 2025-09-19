@@ -1,3 +1,4 @@
+import type { PageProps } from 'next';
 import { GalleryForm } from "../../components/GalleryForm";
 import { GalleryImage } from "@/lib/models";
 import dbConnect from "@/lib/dbConnect";
@@ -9,7 +10,9 @@ async function getImage(id: string) {
   return JSON.parse(JSON.stringify(image));
 }
 
-export default async function EditGalleryImagePage({ params }: { params: { id: string } }) {
-  const image = await getImage(params.id);
+export default async function EditGalleryImagePage({ params }: PageProps<{ id: string }>) {
+  const { id } = await params;        
+  const image = await getImage(id);
+
   return <GalleryForm image={image} />;
 }
