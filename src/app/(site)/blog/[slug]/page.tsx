@@ -11,7 +11,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import { TeamMember } from '@/lib/models';
 
 // Add @ts-ignore on the line above the component definition
-// @ts-ignore
+// @ts-expect-error
 type PostPageProps = {
   params: { slug: string };
 };
@@ -30,7 +30,7 @@ async function getPostBySlug(slug: string): Promise<IBlogPost & { _id: string } 
 }
 
 // Add @ts-ignore on the line above the component definition
-// @ts-ignore
+// @ts-expect-error
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return { title: 'Post Not Found' };
@@ -51,7 +51,7 @@ const placeholderImage = '/images/blog/placeholder_blog.png';
 
 
 // Add @ts-ignore on the line above the component definition
-// @ts-ignore
+// @ts-expect-error
 export default async function BlogPostPage({ params }: PostPageProps ) {
   const post = await getPostBySlug(params.slug);
 
