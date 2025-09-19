@@ -9,7 +9,7 @@ import { Calendar, Link as LinkIcon, Download } from 'lucide-react';
 import { format } from 'date-fns';
 
 type AnnouncementPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getAnnouncementBySlug(slug: string): Promise<IAnnouncement & { _id: string } | null> {
@@ -27,7 +27,9 @@ async function getAnnouncementBySlug(slug: string): Promise<IAnnouncement & { _i
 
 // This function now generates more detailed SEO metadata
 export async function generateMetadata({ params }: AnnouncementPageProps): Promise<Metadata> {
-  const announcement = await getAnnouncementBySlug(params.slug);
+  const { slug } = await params;
+  const announcement = await getAnnouncementBySlug(slug);
+
   if (!announcement) return { title: 'Announcement Not Found' };
 
   const description = announcement.description || `Announcement from AMDCG: ${announcement.title}`;
@@ -67,7 +69,8 @@ const pageBanner = '/images/pagesBanner/banner6.png';
 const placeholderImage = '/images/Notices/announcement/placeholder_announcement.png';
 
 export default async function AnnouncementPage({ params }: AnnouncementPageProps) {
-  const announcement = await getAnnouncementBySlug(params.slug);
+  const { slug } = await params;
+  const announcement = await getAnnouncementBySlug(slug);
 
   if (!announcement) {
     notFound();

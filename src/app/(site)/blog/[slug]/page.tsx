@@ -33,6 +33,7 @@ async function getPostBySlug(slug: string): Promise<IBlogPost & { _id: string } 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
    const { slug } = await params;
   const post = await getPostBySlug(slug);
+  
   if (!post) return { title: 'Post Not Found' };
   return {
     title: post.title,
