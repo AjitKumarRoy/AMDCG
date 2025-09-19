@@ -1,12 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type RouteHandlerContext } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { Patent } from '@/lib/models';
 
 // GET a single patent by ID
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
-    const patent = await Patent.findById(params.id);
+    const patent = await Patent.findById(id);
     if (!patent) {
       return NextResponse.json({ success: false, message: "Patent not found" }, { status: 404 });
     }
@@ -18,11 +19,12 @@ export async function GET(request: Request, { params }: { params: { id: string }
 }
 
 // UPDATE a specific patent
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const body = await request.json();
-    const patent = await Patent.findByIdAndUpdate(params.id, body, { new: true, runValidators: true });
+    const patent = await Patent.findByIdAndUpdate(id, body, { new: true, runValidators: true });
     if (!patent) {
       return NextResponse.json({ success: false, message: "Patent not found" }, { status: 404 });
     }
@@ -34,10 +36,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // DELETE a specific patent
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
-    const deletedPatent = await Patent.deleteOne({ _id: params.id });
+    const deletedPatent = await Patent.deleteOne({ _id: id });
     if (deletedPatent.deletedCount === 0) {
       return NextResponse.json({ success: false, message: "Patent not found" }, { status: 404 });
     }

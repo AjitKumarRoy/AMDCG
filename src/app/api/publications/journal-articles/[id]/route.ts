@@ -1,13 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type RouteHandlerContext } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { JournalArticle } from '@/lib/models';
 
 
 // GET a single article by ID
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
-    const article = await JournalArticle.findById(params.id);
+    const article = await JournalArticle.findById(id);
     if (!article) {
       return NextResponse.json({ success: false, message: "Article not found" }, { status: 404 });
     }
@@ -19,11 +20,12 @@ export async function GET(request: Request, { params }: { params: { id: string }
 }
 
 // UPDATE a specific article
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const body = await request.json();
-    const article = await JournalArticle.findByIdAndUpdate(params.id, body, {
+    const article = await JournalArticle.findByIdAndUpdate(id, body, {
       new: true,
       runValidators: true,
     });
@@ -38,10 +40,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // DELETE a specific article
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
-    const deletedArticle = await JournalArticle.deleteOne({ _id: params.id });
+    const deletedArticle = await JournalArticle.deleteOne({ _id: id });
     if (deletedArticle.deletedCount === 0) {
       return NextResponse.json({ success: false, message: "Article not found" }, { status: 404 });
     }

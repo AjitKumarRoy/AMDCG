@@ -1,13 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type RouteHandlerContext } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { TeamMember } from '@/lib/models';
 
 
 // --- GET a single team member by ID ---
 export async function GET(request: Request, { params }: { params: { id: string } }) {
+  const { id } = context.params;
   try {
     await dbConnect();
-    const member = await TeamMember.findById(params.id);
+    const member = await TeamMember.findById(id);
     if (!member) {
       return NextResponse.json({ success: false, message: "Member not found" }, { status: 404 });
     }
@@ -21,10 +22,11 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
 // UPDATE a specific team member
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const body = await request.json();
-    const member = await TeamMember.findByIdAndUpdate(params.id, body, {
+    const member = await TeamMember.findByIdAndUpdate(id, body, {
       new: true,
       runValidators: true,
     });
@@ -40,9 +42,10 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 
 // DELETE a specific team member
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+  const { id } = context.params;
   try {
     await dbConnect();
-    const deletedMember = await TeamMember.deleteOne({ _id: params.id });
+    const deletedMember = await TeamMember.deleteOne({ _id: id });
     if (deletedMember.deletedCount === 0) {
       return NextResponse.json({ success: false, message: "Member not found" }, { status: 404 });
     }
