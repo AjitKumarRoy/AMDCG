@@ -1,3 +1,4 @@
+import type { PageProps } from 'next';
 import { ProjectForm } from "../../components/ProjectForm";
 import dbConnect from "@/lib/dbConnect";
 import { Project } from "@/lib/models";
@@ -12,7 +13,7 @@ async function getProject(id: string): Promise<ProjectDocument> {
   return JSON.parse(JSON.stringify(project));
 }
 
-export default async function EditProjectPage({ params }: { params: { id: string } }) {
+export default async function EditProjectPage({ params }: PageProps<{ id: string }>) {
   const { id } = params;
   const project = await getProject(id);
   
