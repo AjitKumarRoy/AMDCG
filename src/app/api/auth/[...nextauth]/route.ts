@@ -12,7 +12,7 @@ export const authOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials, req) {
+      async authorize(credentials, _req) {
         if (!credentials) return null;
         await dbConnect();
         

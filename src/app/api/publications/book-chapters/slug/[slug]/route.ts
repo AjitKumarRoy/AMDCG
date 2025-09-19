@@ -13,6 +13,7 @@ export async function GET(request: Request, { params }: { params: { slug: string
     }
     return NextResponse.json({ success: true, data: chapter });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 400 });
   }
 }

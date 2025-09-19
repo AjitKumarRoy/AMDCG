@@ -49,6 +49,7 @@ export async function GET() {
 
     return NextResponse.json({ success: true, data: searchIndex });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

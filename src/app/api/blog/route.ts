@@ -9,6 +9,7 @@ export async function GET() {
     const posts = await BlogPost.find({ isPublished: true }).sort({ publishedAt: -1 });
     return NextResponse.json({ success: true, data: posts });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

@@ -9,6 +9,7 @@ export async function GET() {
     const items = await NewsTicker.find({});
     return NextResponse.json({ success: true, data: items });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }
@@ -21,6 +22,7 @@ export async function POST(request: Request) {
     const item = await NewsTicker.create(body);
     return NextResponse.json({ success: true, data: item }, { status: 201 });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 400 });
   }
 }

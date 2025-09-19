@@ -10,6 +10,7 @@ export async function GET() {
     const facilities = await Facility.find({});
     return NextResponse.json({ success: true, data: facilities });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

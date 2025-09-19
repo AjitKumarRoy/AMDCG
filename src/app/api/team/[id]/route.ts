@@ -13,6 +13,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
     }
     return NextResponse.json({ success: true, data: member });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 400 });
   }
 }
@@ -32,6 +33,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
     return NextResponse.json({ success: true, data: member });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 400 });
   }
 }
@@ -46,6 +48,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     }
     return NextResponse.json({ success: true, data: {} });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 400 });
   }
 }

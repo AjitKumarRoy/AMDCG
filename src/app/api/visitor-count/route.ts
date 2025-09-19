@@ -11,6 +11,7 @@ export async function GET() {
     const visitorCount = await VisitorCount.findOne({ identifier: COUNTER_ID });
     return NextResponse.json({ success: true, count: visitorCount?.count || 0 });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }
@@ -27,6 +28,7 @@ export async function POST() {
     );
     return NextResponse.json({ success: true, count: updatedCount.count });
   } catch (error) {
+    console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }
