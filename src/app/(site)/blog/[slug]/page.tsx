@@ -57,8 +57,6 @@ export default async function BlogPostPage({ params }: PostPageProps ) {
   const sanitizedContent = DOMPurify.sanitize(post.content);
 
 
-
-
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
