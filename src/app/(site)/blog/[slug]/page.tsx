@@ -12,8 +12,9 @@ import { TeamMember } from '@/lib/models';
 
 
 type PostPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
+
 
 async function getPostBySlug(slug: string): Promise<IBlogPost & { _id: string } | null> {
   const url = `${process.env.NEXT_PUBLIC_APP_URL}/api/blog/slug/${slug}`;
@@ -30,7 +31,8 @@ async function getPostBySlug(slug: string): Promise<IBlogPost & { _id: string } 
 
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+   const { slug } = await params;
+  const post = await getPostBySlug(slug);
   if (!post) return { title: 'Post Not Found' };
   return {
     title: post.title,
@@ -68,7 +70,8 @@ const placeholderImage = '/images/blog/placeholder_blog.png';
 
 
 export default async function BlogPostPage({ params }: PostPageProps ) {
-  const post = await getPostBySlug(params.slug);
+   const { slug } = await params;
+   const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
