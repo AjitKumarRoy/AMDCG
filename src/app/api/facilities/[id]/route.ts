@@ -15,4 +15,6 @@ export async function GET(request: Request, context: RouteHandlerContext<{ slug:
     console.error("Error status:", error);
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 400 });
   }
+
+  
 }
