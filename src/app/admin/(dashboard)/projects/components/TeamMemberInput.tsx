@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Trash2, Plus, Link as LinkIcon, UserPlus } from "lucide-react";
+import { Trash2, Link as LinkIcon, UserPlus } from "lucide-react";
 
 interface TeamMember {
   name: string;

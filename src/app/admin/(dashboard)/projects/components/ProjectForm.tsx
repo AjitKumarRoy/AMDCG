@@ -50,6 +50,7 @@ export function ProjectForm({ project }: { project?: IProject & { _id: string } 
         router.push('/admin/projects');
       }, 1000); // 1 second delay
     } catch (error) {
+      console.error("Error status:", error);
       // The error toast will be shown automatically
       setIsSubmitting(false);
     }

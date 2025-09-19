@@ -6,6 +6,17 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { InternshipApplicationList } from './InternshipApplicationList';
 import { PositionApplicationList } from './PositionApplicationList';
 import { PhdApplicationList } from './PhdApplicationList';
+import { 
+    InternshipApplication , 
+    PositionApplication  , 
+    PhdApplication  
+} from '@/types';
+
+interface ApplicationItem {
+  internshipApps: (InternshipApplication & { _id: string })[];
+  positionApps: (PositionApplication & { _id: string })[];
+  phdApps: (PhdApplication & { _id: string })[];
+}
 
 const tabs = [
   { name: 'Internships', id: 'internships' },
@@ -13,7 +24,7 @@ const tabs = [
   { name: 'PhD', id: 'phd' },
 ];
 
-export function ApplicationsClient({ allApplications }: { allApplications: any }) {
+export function ApplicationsClient({ allApplications }: { allApplications: ApplicationItem }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

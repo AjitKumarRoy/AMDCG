@@ -7,6 +7,19 @@ import { JournalArticleList } from './JournalArticleList';
 import { ConferencePaperList } from './ConferencePaperList';
 import { BookChapterList } from './BookChapterList';
 import { PatentList } from './PatentList';
+import { 
+    JournalArticle , 
+    ConferencePaper  , 
+    BookChapter  ,
+    Patent
+} from '@/types';
+
+interface PublicationsItem {
+  journalArticles: (JournalArticle & { _id: string })[];
+  conferencePapers: (ConferencePaper & { _id: string })[];
+  bookChapters: (BookChapter & { _id: string })[];
+  patents: (Patent & { _id: string })[];
+}
 
 const tabs = [
   { name: 'Journal Articles', id: 'journal-articles' },
@@ -15,7 +28,7 @@ const tabs = [
   { name: 'Patents', id: 'patents' },
 ];
 
-export function PublicationsClient({ allPublications }: { allPublications: any }) {
+export function PublicationsClient({ allPublications }: { allPublications: PublicationsItem }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

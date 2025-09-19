@@ -16,7 +16,7 @@ export default async function GalleryPage() {
   return (
     <div>
       <Title as="h1" icon={ImageIcon}>Manage Gallery</Title>
-      <p className="mt-2 text-slate-400">Add, edit, and remove images from your website's gallery.</p>
+      <p className="mt-2 text-slate-400">Add, edit, and remove images from your website&apos;s gallery.</p>
       <GalleryList images={images} />
     </div>
   );

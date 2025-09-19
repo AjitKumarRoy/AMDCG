@@ -8,6 +8,22 @@ import { AnnouncementsList } from './AnnouncementsList';
 import { RecruitmentsList } from './RecruitmentsList';
 import { EventsList } from './EventsList';
 import { NewsTickerList } from './NewsTickerList';
+import { 
+  type NewsArticle,
+  type Announcement,
+  type Recruitment,
+  type Event,
+  type NewsTicker
+} from '@/types';
+
+
+interface AllNewsData {
+  newsArticles: (NewsArticle & { _id: string })[];
+  announcements: (Announcement & { _id: string })[];
+  recruitments: (Recruitment & { _id: string })[];
+  events: (Event & { _id: string })[];
+  newsTicker: (NewsTicker & { _id: string })[];
+}
 
 const tabs = [
   { name: 'News Articles', id: 'news-articles' },
@@ -17,7 +33,7 @@ const tabs = [
   { name: 'News Ticker', id: 'news-ticker' },
 ];
 
-export function NewsNoticesClient({ allNewsData }: { allNewsData: any }) {
+export function NewsNoticesClient({ allNewsData }: { allNewsData: AllNewsData }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

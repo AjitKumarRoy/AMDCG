@@ -22,7 +22,8 @@ export async function createFacility(formData: FormData) {
     await Facility.create(newFacility);
     revalidatePath("/admin/facilities");
     revalidatePath("/facilities");
-  } catch (error: any) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    console.error("Failed to create facility:", error); // Log the original error
     throw new Error("Failed to create facility.");
   }
 //   redirect("/admin/facilities");
@@ -45,7 +46,8 @@ export async function updateFacility(id: string, formData: FormData) {
     await Facility.findByIdAndUpdate(id, updatedFacility);
     revalidatePath("/admin/facilities");
     revalidatePath("/facilities");
-  } catch (error: any) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    console.error("Failed to update facility:", error); // Log the original error
     throw new Error("Failed to update facility.");
   }
 //   redirect("/admin/facilities");

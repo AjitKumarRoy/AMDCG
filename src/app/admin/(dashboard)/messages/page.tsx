@@ -16,7 +16,7 @@ export default async function MessagesPage() {
   return (
     <div>
       <Title as="h1" icon={Mail}>Contact Messages</Title>
-      <p className="mt-2 text-slate-400">Review messages submitted through your website's contact form.</p>
+      <p className="mt-2 text-slate-400">Review messages submitted through your website&apos;s contact form.</p>
       <MessageList messages={messages} />
     </div>
   );

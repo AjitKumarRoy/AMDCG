@@ -44,6 +44,7 @@ export function FacilityForm({ facility }: { facility?: IFacility & { _id: strin
         router.push('/admin/facilities');
       }, 1000);
     } catch (error) {
+      console.error("Error status:", error);
       setIsSubmitting(false);
     }
   };

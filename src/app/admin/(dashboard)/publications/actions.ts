@@ -24,13 +24,10 @@ try {
   };
   await JournalArticle.create(newArticle);
   revalidatePath("/admin/publications");
-} catch (error: any) {
-    // Check if the error is the specific MongoDB 'duplicate key' error
-    if (error.code === 11000) {
-      // Throw a new, user-friendly error message
+} catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A journal article with this publication link or slug already exists.");
     }
-    // For any other errors, throw a generic message
     throw new Error("Failed to create the journal article.");
   }
 }
@@ -54,13 +51,10 @@ try {
     if (updatedArticle.slug) {
       revalidatePath(`/publications/journal-article/${updatedArticle.slug}`); // Revalidate the specific publications's slug page
     }
-} catch (error: any) {
-    // Check if the error is the specific MongoDB 'duplicate key' error
-    if (error.code === 11000) {
-      // Throw a new, user-friendly error message
+} catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A journal article with this publication link or slug already exists.");
     }
-    // For any other errors, throw a generic message
     throw new Error("Failed to update the journal article.");
   }
 }
@@ -83,8 +77,8 @@ export async function createConferencePaper(formData: FormData) {
     };
     await ConferencePaper.create(newPaper);
     revalidatePath("/admin/publications");
-  } catch (error: any) {
-    if (error.code === 11000) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A conference paper with this link or slug already exists.");
     }
     throw new Error("Failed to create conference paper.");
@@ -110,11 +104,11 @@ export async function updateConferencePaper(id: string, formData: FormData) {
       if (updatedPaper.slug) {
         revalidatePath(`/publications/conference-presentation/${updatedPaper.slug}`); // Revalidate the specific publication's slug page
       }
-  }  catch (error: any) {
-    if (error.code === 11000) {
+  }  catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A conference paper with this link or slug already exists.");
     }
-    throw new Error("Failed to create conference paper.");
+    throw new Error("Failed to update conference paper.");
   }
 }
 
@@ -136,8 +130,8 @@ export async function createBookChapter(formData: FormData) {
     };
     await BookChapter.create(newChapter);
     revalidatePath("/admin/publications");
-  } catch (error: any) {
-    if (error.code === 11000) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A book chapter with this link or slug already exists.");
     }
     throw new Error("Failed to create book chapter.");
@@ -163,11 +157,11 @@ export async function updateBookChapter(id: string, formData: FormData) {
       if (updatedChapter.slug) {
         revalidatePath(`/publications/book-chapter/${updatedChapter.slug}`); // Revalidate the specific publication's slug page
       }
-  } catch (error: any) {
-    if (error.code === 11000) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A book chapter with this link or slug already exists.");
     }
-    throw new Error("Failed to create book chapter.");
+    throw new Error("Failed to update book chapter.");
   }
 }
 
@@ -189,8 +183,8 @@ export async function createPatent(formData: FormData) {
     };
     await Patent.create(newPatent);
     revalidatePath("/admin/publications");
-  } catch (error: any) {
-    if (error.code === 11000) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A patent with this number or slug already exists.");
     }
     throw new Error("Failed to create patent.");
@@ -216,11 +210,11 @@ export async function updatePatent(id: string, formData: FormData) {
   if (updatedPatent.slug) {
     revalidatePath(`/research/patent/${updatedPatent.slug}`); // Revalidate the specific publication's slug page
   }
-  } catch (error: any) {
-    if (error.code === 11000) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A patent with this number or slug already exists.");
     }
-    throw new Error("Failed to create patent.");
+    throw new Error("Failed to update patent.");
   }
 }
 

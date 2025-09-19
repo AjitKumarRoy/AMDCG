@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createGalleryImage, updateGalleryImage } from "../actions";
 import { type GalleryImage as IGalleryImage } from "@/types";
@@ -53,6 +53,7 @@ export function GalleryForm({ image }: { image?: IGalleryImage & { _id: string }
         router.push('/admin/gallery');
       }, 1000);
     } catch (error) {
+      console.error("Error status:", error);
       setIsSubmitting(false);
     }
   };

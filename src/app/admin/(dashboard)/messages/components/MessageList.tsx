@@ -3,7 +3,7 @@
 import { useState, Fragment } from "react";
 import { format } from 'date-fns';
 import { Button } from "@/components/ui/Button";
-import { ChevronDown, Mail as MailIcon } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { type ContactMessage as IContactMessage } from "@/types";
 import { updateMessageStatus } from "../actions";
 import toast from "react-hot-toast";

@@ -40,13 +40,10 @@ export async function createTeamMember(formData: FormData) {
             
             revalidatePath("/admin/team");
             //   redirect("/admin/team");
-    } catch (error: any) {
-    // Check for the specific MongoDB duplicate key error code
-    if (error.code === 11000) {
-      // Throw a new, user-friendly error
+    } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A team member with this slug or email already exists.");
     }
-    // For any other errors, throw a generic message
     throw new Error("Failed to create team member.");
   }
 }
@@ -89,8 +86,8 @@ export async function updateTeamMember(id: string, formData: FormData) {
         revalidatePath(`/team/${updatedMember.slug}`); // Revalidate the specific teams's slug page
       }
     //   redirect("/admin/team");
-  } catch (error: any) {
-    if (error.code === 11000) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
       throw new Error("A team member with this slug or email already exists.");
     }
     throw new Error("Failed to update team member.");

@@ -61,6 +61,7 @@ export function BlogForm({ post }: { post?: IBlogPost & { _id: string } }) {
       await promise;
       setTimeout(() => { router.push('/admin/blog'); }, 1000);
     } catch (error) {
+      console.error("Error status:", error);
       setIsSubmitting(false);
     }
   };

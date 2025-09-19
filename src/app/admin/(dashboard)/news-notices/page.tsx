@@ -27,7 +27,7 @@ export default async function NewsPage() {
   return (
     <div>
       <Title as="h1" icon={Newspaper}>Manage News & Notices</Title>
-      <p className="mt-2 text-slate-400">Manage all your site's updates from one place.</p>
+      <p className="mt-2 text-slate-400">Manage all your site&apos;s updates from one place.</p>
       <NewsNoticesClient allNewsData={allNewsData} />
     </div>
   );

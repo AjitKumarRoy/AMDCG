@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Trash2, PlusCircle } from "lucide-react";
-import { type TeamMember as ITeamMember } from "@/types";
 
 type Contribution = {
   project?: string;

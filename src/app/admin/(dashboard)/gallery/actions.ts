@@ -18,8 +18,9 @@ export async function createGalleryImage(formData: FormData) {
     await GalleryImage.create(newImage);
     revalidatePath("/admin/gallery");
     revalidatePath("/gallery");
-  } catch (error: any) {
-    throw new Error("Failed to create gallery image.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    console.error("Failed to create gallery image.", error); // Log the original error
+    throw new Error("Failed to create gallery image..");
   }
 //   redirect("/admin/gallery");
 }
@@ -37,7 +38,8 @@ export async function updateGalleryImage(id: string, formData: FormData) {
     await GalleryImage.findByIdAndUpdate(id, updatedImage);
     revalidatePath("/admin/gallery");
     revalidatePath("/gallery");
-  } catch (error: any) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    console.error("Failed to update gallery image.", error); // Log the original error
     throw new Error("Failed to update gallery image.");
   }
 //   redirect("/admin/gallery");

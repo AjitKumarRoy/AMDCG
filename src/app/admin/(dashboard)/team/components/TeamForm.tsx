@@ -44,6 +44,7 @@ export function TeamForm({ member }: { member?: ITeamMember & { _id: string } })
         router.push('/admin/team');
       }, 1000);
     } catch (error) {
+      console.error("Error status:", error);
       // --- ADD THIS LINE ---
       // Reset the button's state when an error occurs
       setIsSubmitting(false);

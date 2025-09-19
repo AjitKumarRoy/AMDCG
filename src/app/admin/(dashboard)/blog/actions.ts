@@ -23,8 +23,11 @@ export async function createBlogPost(formData: FormData) {
     await BlogPost.create(newPost);
     revalidatePath("/admin/blog");
     revalidatePath("/blog");
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("A blog post with this slug already exists.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    // Check if the error is a MongoDB duplicate key error
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("A blog post with this slug already exists.");
+    }
     throw new Error("Failed to create blog post.");
   }
 //   redirect("/admin/blog");
@@ -62,8 +65,10 @@ export async function updateBlogPost(id: string, formData: FormData) {
     if (updatedPostData.slug) {
       revalidatePath(`/blog/${updatedPostData.slug}`);
     }
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("A blog post with this slug already exists.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("A blog post with this slug already exists.");
+    }
     throw new Error("Failed to update blog post.");
   }
 //   redirect("/admin/blog");

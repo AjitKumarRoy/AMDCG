@@ -48,6 +48,7 @@ export function PatentForm({ patent }: { patent?: IPatent & { _id: string } }) {
       await promise;
       setTimeout(() => { router.push(`/admin/publications?tab=${returnTab}`); }, 1000);
     } catch (error) {
+      console.error("Error status:", error);
       setIsSubmitting(false);
     }
   };

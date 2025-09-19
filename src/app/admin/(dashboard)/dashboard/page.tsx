@@ -97,7 +97,7 @@ export default async function DashboardPage() {
   return (
     <div>
       <Title as="h1">Dashboard</Title>
-      <p className="mt-2 text-slate-400">A quick overview of your website's content.</p>
+      <p className="mt-2 text-slate-400">A quick overview of your website&apos;s content.</p>
       
       {/* --- Display a card for each count --- */}
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

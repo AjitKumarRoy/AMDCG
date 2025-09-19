@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useTransition, Fragment } from "react";
-import Link from "next/link";
 import { format } from 'date-fns';
 import { Button } from "@/components/ui/Button";
-import { Download, ChevronDown, Mail, Phone, FileText, Briefcase, GraduationCap, ChevronLeft, ChevronRight } from "lucide-react";
+import { Download, ChevronDown, Mail, Phone, Briefcase, GraduationCap, ChevronLeft, ChevronRight } from "lucide-react";
 import { type PhdApplication as IPhdApplication } from "@/types";
 import { updatePhdApplicationStatus } from "../actions";
 import toast from "react-hot-toast";
@@ -71,17 +70,22 @@ export function PhdApplicationList({ applications }: { applications: AppWithId[]
             <tr>
               <th className="w-24 px-6 py-4 text-center border-r border-slate-800 text-amber-400">Reviewed</th>
               <th className="px-6 py-4 text-left border-r border-slate-800 text-amber-400">Applicant Name</th>
-              <th className="px-6 py-4 text-left border-r border-slate-800 text-amber-400">Bachelor's Degree</th>
+              <th className="px-6 py-4 text-left border-r border-slate-800 text-amber-400">Bachelor&apos;s Degree</th>
               <th className="px-6 py-4 text-left border-r border-slate-800 text-amber-400">Applied On</th>
               <th className="w-48 px-6 py-4 text-center text-amber-400">Details</th>
             </tr>
           </thead>
           <tbody className="bg-black/20 divide-y divide-slate-800">
-            {localApplications.map((app) => (
+            {currentApplications.map((app) => (
               <Fragment key={app._id}>
                 <tr className={app.status === 'Reviewed' ? 'bg-slate-800/30' : ''}>
                   <td className="px-6 py-4 text-center border-r border-slate-800">
-                    <input type="checkbox" checked={app.status === 'Reviewed'} onChange={(e) => handleStatusChange(app._id, e.target.checked)} className="..." />
+                    <input 
+                    type="checkbox" 
+                    checked={app.status === 'Reviewed'} 
+                    onChange={(e) => handleStatusChange(app._id, e.target.checked)} 
+                    disabled={isPending}
+                    className="..." />
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-white border-r border-slate-800">{app.name}</td>
                   <td className="px-6 py-4 text-slate-400 break-words border-r border-slate-800">{app.bachelorsDegree}</td>
@@ -100,7 +104,7 @@ export function PhdApplicationList({ applications }: { applications: AppWithId[]
                         <div className="space-y-2">
                           <p className="flex items-center gap-2 text-slate-400"><Mail className="h-4 w-4"/> {app.email}</p>
                           {app.phone && <p className="flex items-center gap-2 text-slate-400"><Phone className="h-4 w-4"/> {app.phone}</p>}
-                          {app.mastersDegree && <p className="flex items-center gap-2 text-slate-400"><GraduationCap className="h-4 w-4"/> Master's: {app.mastersDegree}</p>}
+                          {app.mastersDegree && <p className="flex items-center gap-2 text-slate-400"><GraduationCap className="h-4 w-4"/> Master&apos;s: {app.mastersDegree}</p>}
                           {app.qualifyingExam && <p className="flex items-center gap-2 text-slate-400"><Briefcase className="h-4 w-4"/> Exam: {app.qualifyingExam}</p>}
                         </div>
                         <div className="text-slate-400 flex flex-col items-start gap-2">

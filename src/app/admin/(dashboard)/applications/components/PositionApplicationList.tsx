@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useTransition, Fragment } from "react";
-import Link from "next/link";
 import { format } from 'date-fns';
 import { Button } from "@/components/ui/Button";
 import { Download, ChevronDown, Mail, Phone, FileText, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
@@ -44,7 +43,7 @@ export function PositionApplicationList({ applications }: { applications: AppWit
   };
 
    // Pagination Logic
-  const totalPages = Math.ceil(applications.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(localApplications.length / ITEMS_PER_PAGE);
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentApplications = applications.slice(indexOfFirstItem, indexOfLastItem);
@@ -81,7 +80,11 @@ export function PositionApplicationList({ applications }: { applications: AppWit
               <Fragment key={app._id}>
                 <tr className={app.status === 'Reviewed' ? 'bg-slate-800/30' : ''}>
                   <td className="px-6 py-4 text-center border-r border-slate-800">
-                    <input type="checkbox" checked={app.status === 'Reviewed'} onChange={(e) => handleStatusChange(app._id, e.target.checked)} className="..." />
+                    <input 
+                    type="checkbox" 
+                    checked={app.status === 'Reviewed'} onChange={(e) => handleStatusChange(app._id, e.target.checked)} 
+                    disabled={isPending}
+                    className="..." />
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-white border-r border-slate-800">{app.name}</td>
                   <td className="px-6 py-4 text-slate-400 break-words border-r border-slate-800">{app.highestQualification}</td>

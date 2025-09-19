@@ -19,8 +19,10 @@ export async function createNewsArticle(formData: FormData) {
     };
     await NewsArticle.create(newArticle);
     revalidatePath("/admin/news-notices");
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("A news article with this slug already exists.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("A news article with this slug already exists.");
+    }
     throw new Error("Failed to create news article.");
   }
 }
@@ -42,8 +44,10 @@ export async function updateNewsArticle(id: string, formData: FormData) {
   if (updatedArticle.slug) {
     revalidatePath(`/news-events/news/${updatedArticle.slug}`); // Revalidate the specific project's slug page
   }
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("A news article with this slug already exists.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("A news article with this slug already exists.");
+    }
     throw new Error("Failed to update news article.");
   }
 }
@@ -68,8 +72,10 @@ export async function createAnnouncement(formData: FormData) {
     };
     await Announcement.create(newAnnouncement);
     revalidatePath("/admin/news-notices");
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("An announcement with this slug already exists.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("An announcement with this slug already exists.");
+    }
     throw new Error("Failed to create announcement.");
   }
 }
@@ -91,9 +97,11 @@ export async function updateAnnouncement(id: string, formData: FormData) {
       if (updatedAnnouncement.slug) {
         revalidatePath(`/news-events/announcement/${updatedAnnouncement.slug}`); // Revalidate the specific project's slug page
       }
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("An announcement with this slug already exists.");
-    throw new Error("Failed to create announcement.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("An announcement with this slug already exists.");
+    }
+    throw new Error("Failed to update announcement.");
   }
  }
 export async function deleteAnnouncement(id: string) {
@@ -117,8 +125,10 @@ export async function createRecruitment(formData: FormData) {
     };
     await Recruitment.create(newRecruitment);
     revalidatePath("/admin/news-notices");
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("A recruitment posting with this slug already exists.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("A recruitment posting with this slug already exists.");
+    }
     throw new Error("Failed to create recruitment posting.");
   }
 }
@@ -140,9 +150,11 @@ export async function updateRecruitment(id: string, formData: FormData) {
   if (updatedRecruitment.slug) {
     revalidatePath(`/news-events/recruitment/${updatedRecruitment.slug}`); // Revalidate the specific project's slug page
   }
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("A recruitment posting with this slug already exists.");
-    throw new Error("Failed to create recruitment posting.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("A recruitment posting with this slug already exists.");
+    }
+    throw new Error("Failed to update recruitment posting.");
   }
  }
 export async function deleteRecruitment(id: string) {
@@ -167,8 +179,10 @@ export async function createEvent(formData: FormData) {
     };
     await Event.create(newEvent);
     revalidatePath("/admin/news-notices");
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("An event with this slug already exists.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("An event with this slug already exists.");
+    }
     throw new Error("Failed to create event.");
   }
 }
@@ -191,9 +205,11 @@ export async function updateEvent(id: string, formData: FormData) {
       if (updatedEvent.slug) {
         revalidatePath(`/news-events/event/${updatedEvent.slug}`); // Revalidate the specific project's slug page
       }
-  } catch (error: any) {
-    if (error.code === 11000) throw new Error("An event with this slug already exists.");
-    throw new Error("Failed to create event.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    if (error && typeof error === 'object' && 'code' in error && (error as any).code === 11000) {
+      throw new Error("An event with this slug already exists.");
+    }
+    throw new Error("Failed to update event.");
   }
  }
 export async function deleteEvent(id: string) {
@@ -212,7 +228,8 @@ export async function createNewsTicker(formData: FormData) {
     };
     await NewsTicker.create(newItem);
     revalidatePath("/admin/news-notices");
-  } catch (error: any) {
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    console.error("Failed to create ticker item.", error); // Log the original error
     throw new Error("Failed to create ticker item.");
   }
 }
@@ -226,8 +243,9 @@ export async function updateNewsTicker(id: string, formData: FormData) {
     await NewsTicker.findByIdAndUpdate(id, updatedItem);
     revalidatePath("/admin/news-notices");
     revalidatePath("/");        // Revalidate the public research page
-  } catch (error: any) {
-    throw new Error("Failed to create ticker item.");
+  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+    console.error("Failed to update ticker item.", error); // Log the original error
+    throw new Error("Failed to update ticker item.");
   }
  }
 export async function deleteNewsTicker(id: string) {

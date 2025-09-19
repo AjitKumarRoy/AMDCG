@@ -52,6 +52,7 @@ export function JournalArticleForm({ article }: { article?: IJournalArticle & { 
       await promise;
       setTimeout(() => { router.push(`/admin/publications?tab=${returnTab}`); }, 1000);  // use it in redirect
     } catch (error) {
+      console.error("Error status:", error);
       setIsSubmitting(false);
     }
   };

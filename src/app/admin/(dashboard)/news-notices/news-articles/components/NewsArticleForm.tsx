@@ -42,6 +42,7 @@ export function NewsArticleForm({ article }: { article?: INewsArticle & { _id: s
       await promise;
       setTimeout(() => { router.push(`/admin/news-notices?tab=${returnTab}`); }, 1000);
     } catch (error) {
+      console.error("Error status:", error);
       setIsSubmitting(false);
     }
   };
