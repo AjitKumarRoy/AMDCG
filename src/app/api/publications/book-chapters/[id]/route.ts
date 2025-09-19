@@ -4,9 +4,10 @@ import { BookChapter } from '@/lib/models';
 
 // GET a single chapter by ID
 export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+   const { id } = context.params;
   try {
     await dbConnect();
-    const chapter = await BookChapter.findById(context.params);
+    const chapter = await BookChapter.findById(id);
     if (!chapter) {
       return NextResponse.json({ success: false, message: "Chapter not found" }, { status: 404 });
     }
@@ -19,10 +20,11 @@ export async function GET(request: Request, context: RouteHandlerContext<{ slug:
 
 // UPDATE a specific chapter
 export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+   const { id } = context.params;
   try {
     await dbConnect();
     const body = await request.json();
-    const chapter = await BookChapter.findByIdAndUpdate(context.params, body, { new: true, runValidators: true });
+    const chapter = await BookChapter.findByIdAndUpdate(id, body, { new: true, runValidators: true });
     if (!chapter) {
       return NextResponse.json({ success: false, message: "Chapter not found" }, { status: 404 });
     }
@@ -35,9 +37,10 @@ export async function PUT(request: Request, context: RouteHandlerContext<{ slug:
 
 // DELETE a specific chapter
 export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+   const { id } = context.params;
   try {
     await dbConnect();
-    const deletedChapter = await BookChapter.deleteOne({ _id: context.params });
+    const deletedChapter = await BookChapter.deleteOne({ _id: id });
     if (deletedChapter.deletedCount === 0) {
       return NextResponse.json({ success: false, message: "Chapter not found" }, { status: 404 });
     }

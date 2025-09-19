@@ -1,12 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type RouteHandlerContext } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { ConferencePaper } from '@/lib/models';
 
 // GET a single paper by ID
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
-    const paper = await ConferencePaper.findById(params.id);
+    const paper = await ConferencePaper.findById(id);
     if (!paper) {
       return NextResponse.json({ success: false, message: "Paper not found" }, { status: 404 });
     }
@@ -18,11 +19,12 @@ export async function GET(request: Request, { params }: { params: { id: string }
 }
 
 // UPDATE a specific paper
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
     const body = await request.json();
-    const paper = await ConferencePaper.findByIdAndUpdate(params.id, body, { new: true, runValidators: true });
+    const paper = await ConferencePaper.findByIdAndUpdate(id, body, { new: true, runValidators: true });
     if (!paper) {
       return NextResponse.json({ success: false, message: "Paper not found" }, { status: 404 });
     }
@@ -34,10 +36,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // DELETE a specific paper
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
+  const { id } = context.params;
   try {
     await dbConnect();
-    const deletedPaper = await ConferencePaper.deleteOne({ _id: params.id });
+    const deletedPaper = await ConferencePaper.deleteOne({ _id: id });
     if (deletedPaper.deletedCount === 0) {
       return NextResponse.json({ success: false, message: "Paper not found" }, { status: 404 });
     }
