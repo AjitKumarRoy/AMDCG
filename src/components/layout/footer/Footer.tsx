@@ -142,6 +142,14 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            <ul className="mt-2 space-y-2">
+                <li>
+                  <Link href="/admin/dashboard" className="group flex items-center gap-2 hover:text-cyan-400 transition-colors" target='_blank'>
+                    <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <span>ERP</span>
+                  </Link>
+                </li>
+            </ul>
           </motion.div>
 
           {/* Column 3: Explore */}

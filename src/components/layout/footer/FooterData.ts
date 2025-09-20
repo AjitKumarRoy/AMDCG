@@ -6,7 +6,6 @@ export const mainNavLinks = [
   { href: "/publications", label: "Publicatons" },
   { href: "/news-events", label: "News & Events" },
   { href: "/contact", label: "Contact" },
-  { href: "/admin/dashboard", label: "ERP" },
 ];
 
 export const moreDropdownLinks = [
