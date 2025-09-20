@@ -1,10 +1,14 @@
-import { NextResponse, type RouteHandlerContext } from 'next/server';
+import { NextResponse  } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { NewsTicker } from '@/lib/models';
 
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
 // GET a single item by ID
-export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
-  const { id } = context.params;
+export async function GET(request: Request, { params }: PageProps) {
+  const { id } = await params;
   try {
     await dbConnect();
     const item = await NewsTicker.findById(id);
@@ -19,8 +23,8 @@ export async function GET(request: Request, context: RouteHandlerContext<{ slug:
 }
 
 // UPDATE a specific item
-export async function PUT(request: Request, context: RouteHandlerContext<{ slug: string }>) {
-  const { id } = context.params;
+export async function PUT(request: Request, { params }: PageProps) {
+  const { id } = await params;
   try {
     await dbConnect();
     const body = await request.json();
@@ -36,8 +40,8 @@ export async function PUT(request: Request, context: RouteHandlerContext<{ slug:
 }
 
 // DELETE a specific item
-export async function DELETE(request: Request, context: RouteHandlerContext<{ slug: string }>) {
-  const { id } = context.params;
+export async function DELETE(request: Request, { params }: PageProps) {
+  const { id } = await params;
   try {
     await dbConnect();
     const deletedItem = await NewsTicker.deleteOne({ _id: id });
