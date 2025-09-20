@@ -1,9 +1,9 @@
-import { NextResponse, type RouteHandlerContext } from 'next/server';
+import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { BlogPost } from '@/lib/models';
 
-export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
-  const { slug } = context.params;
+export async function GET(request: Request, { params }: { params: { slug: string } } ) {
+  const { slug } = params;
   try {
     await dbConnect();
     const post = await BlogPost.findOne({ slug: slug, isPublished: true }); 
