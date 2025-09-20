@@ -2,8 +2,13 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { BlogPost } from '@/lib/models';
 
-export async function GET(request: Request, { params }: { params: { slug: string } } ) {
-  const { slug } = params;
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function GET(request: Request, { params }: PageProps ) {
+  const { slug } = await params;
+
   try {
     await dbConnect();
     const post = await BlogPost.findOne({ slug: slug, isPublished: true }); 
