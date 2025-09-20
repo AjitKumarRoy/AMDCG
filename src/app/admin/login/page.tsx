@@ -75,6 +75,7 @@ export default function LoginPage() {
           </Button>
         </form>
         <div className="text-center mt-6">
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/" className="text-sm text-slate-400 hover:text-amber-400 hover:underline">
             &larr; Back to Website
           </a>
