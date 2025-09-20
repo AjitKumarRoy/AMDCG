@@ -19,6 +19,7 @@ export async function createNewsArticle(formData: FormData) {
     };
     await NewsArticle.create(newArticle);
     revalidatePath("/admin/news-notices");
+    revalidatePath("/news-events");
   } catch (error: unknown) { // Use 'unknown' instead of 'any'
     if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       throw new Error("A news article with this slug already exists.");
@@ -55,6 +56,7 @@ export async function deleteNewsArticle(id: string) {
   await dbConnect();
   await NewsArticle.findByIdAndDelete(id);
   revalidatePath("/admin/news-notices");
+  revalidatePath("/news-events");
 }
 
 // --- Announcement Actions ---
@@ -72,6 +74,7 @@ export async function createAnnouncement(formData: FormData) {
     };
     await Announcement.create(newAnnouncement);
     revalidatePath("/admin/news-notices");
+    revalidatePath("/news-events");
   } catch (error: unknown) { // Use 'unknown' instead of 'any'
     if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       throw new Error("An announcement with this slug already exists.");
@@ -108,6 +111,7 @@ export async function deleteAnnouncement(id: string) {
   await dbConnect();
   await Announcement.findByIdAndDelete(id);
   revalidatePath("/admin/news-notices");
+  revalidatePath("/news-events");
 }
 
 // --- Recruitment Actions ---
@@ -125,6 +129,7 @@ export async function createRecruitment(formData: FormData) {
     };
     await Recruitment.create(newRecruitment);
     revalidatePath("/admin/news-notices");
+    revalidatePath("/news-events");
   } catch (error: unknown) { // Use 'unknown' instead of 'any'
     if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       throw new Error("A recruitment posting with this slug already exists.");
@@ -161,6 +166,7 @@ export async function deleteRecruitment(id: string) {
   await dbConnect();
   await Recruitment.findByIdAndDelete(id);
   revalidatePath("/admin/news-notices");
+  revalidatePath("/news-events");
 }
 
 // --- Event Actions ---
@@ -179,6 +185,7 @@ export async function createEvent(formData: FormData) {
     };
     await Event.create(newEvent);
     revalidatePath("/admin/news-notices");
+    revalidatePath("/news-events");
   } catch (error: unknown) { // Use 'unknown' instead of 'any'
     if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       throw new Error("An event with this slug already exists.");
@@ -216,6 +223,7 @@ export async function deleteEvent(id: string) {
   await dbConnect();
   await Event.findByIdAndDelete(id);
   revalidatePath("/admin/news-notices");
+  revalidatePath("/news-events");
 }
 
 // --- NewsTicker Actions ---
@@ -228,6 +236,7 @@ export async function createNewsTicker(formData: FormData) {
     };
     await NewsTicker.create(newItem);
     revalidatePath("/admin/news-notices");
+    revalidatePath("/");
   } catch (error: unknown) { // Use 'unknown' instead of 'any'
     console.error("Failed to create ticker item.", error); // Log the original error
     throw new Error("Failed to create ticker item.");
@@ -252,4 +261,5 @@ export async function deleteNewsTicker(id: string) {
   await dbConnect();
   await NewsTicker.findByIdAndDelete(id);
   revalidatePath("/admin/news-notices");
+  revalidatePath("/");
 }
