@@ -1,13 +1,14 @@
 "use client";
 
 import { Tab } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Fragment, useTransition } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { NewsArticleList } from './NewsArticleList';
 import { AnnouncementsList } from './AnnouncementsList';
 import { RecruitmentsList } from './RecruitmentsList';
 import { EventsList } from './EventsList';
 import { NewsTickerList } from './NewsTickerList';
+import { Loader } from 'lucide-react'; // 2. Import a loader icon
 import { 
   type NewsArticle,
   type Announcement,
@@ -33,17 +34,26 @@ const tabs = [
   { name: 'News Ticker', id: 'news-ticker' },
 ];
 
+
+
 export function NewsNoticesClient({ allNewsData }: { allNewsData: AllNewsData }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const activeTab = searchParams.get('tab') || tabs[0].id;
-
   const activeTabIndex = tabs.findIndex(tab => tab.id === activeTab);
+
+
+
+  // 3. Initialize the useTransition hook
+  const [isPending, startTransition] = useTransition();
 
   const handleTabChange = (index: number) => {
     const newTabId = tabs[index].id;
-    router.push(`${pathname}?tab=${newTabId}`);
+    // 4. Wrap the navigation in startTransition
+    startTransition(() => {
+      router.push(`${pathname}?tab=${newTabId}`);
+    });
   };
 
   return (
@@ -64,6 +74,12 @@ export function NewsNoticesClient({ allNewsData }: { allNewsData: AllNewsData })
             </Tab>
           ))}
         </Tab.List>
+        {/* 5. Add the conditional loading overlay */}
+          {isPending && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm">
+              <Loader className="h-8 w-8 animate-spin text-amber-500" />
+            </div>
+          )}
         <Tab.Panels className="mt-6">
           <Tab.Panel><NewsArticleList articles={allNewsData.newsArticles} /></Tab.Panel>
           <Tab.Panel><AnnouncementsList announcements={allNewsData.announcements} /></Tab.Panel>
