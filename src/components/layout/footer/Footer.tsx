@@ -110,7 +110,7 @@ export default function Footer() {
         >
           {/* Column 1: About ORBI */}
           <motion.div variants={itemVariants} className="lg:col-span-1 lg:border-r-2 lg:border-slate-700 pr-4">
-            <Link href="/" className="inline-flex items-center gap-3 mb-4 border border-white/10 ">
+            <Link href="/" className="inline-flex items-center gap-3 mb-4 border border-white/10 rounded-2xl">
               <Image src={footerData.logoUrl} alt="AMDCG Logo" width={250} height={250} className='rounded-2xl' />
             </Link>
             <div className="text-xl  font-bold text-white mb-2 font-heading">Advanced Materials Development & Characterization Group</div>
