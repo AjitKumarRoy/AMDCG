@@ -1,7 +1,11 @@
-import type { PageProps } from 'next';
+
 import { FacilityForm } from "../../components/FacilityForm";
 import { Facility } from "@/lib/models";
 import dbConnect from "@/lib/dbConnect";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
 
 // This function fetches a single facility by its ID
 async function getFacility(id: string) {
@@ -10,7 +14,7 @@ async function getFacility(id: string) {
   return JSON.parse(JSON.stringify(facility));
 }
 
-export default async function EditFacilityPage({ params }: PageProps<{ id: string }>) {
+export default async function EditFacilityPage({ params }: PageProps) {
   const { id } = await params;        
   const facility = await getFacility(id);
 

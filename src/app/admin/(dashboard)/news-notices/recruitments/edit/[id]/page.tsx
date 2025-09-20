@@ -1,7 +1,11 @@
-import type { PageProps } from 'next';
 import { RecruitmentForm } from "../../components/RecruitmentForm";
 import dbConnect from "@/lib/dbConnect";
 import { Recruitment } from "@/lib/models";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
 
 async function getRecruitment(id: string) {
   await dbConnect();
@@ -9,7 +13,7 @@ async function getRecruitment(id: string) {
   return JSON.parse(JSON.stringify(recruitment));
 }
 
-export default async function EditRecruitmentPage({ params }: PageProps<{ id: string }>) {
+export default async function EditRecruitmentPage({ params }: PageProps) {
   const { id } = await params;        
   const recruitment = await getRecruitment(id);
 

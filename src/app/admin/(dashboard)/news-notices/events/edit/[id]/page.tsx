@@ -1,7 +1,12 @@
-import type { PageProps } from 'next';
+ 
 import { EventsForm } from "../../components/EventsForm";
 import dbConnect from "@/lib/dbConnect";
 import { Event } from "@/lib/models";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
 
 async function getEvent(id: string) {
   await dbConnect();
@@ -9,7 +14,7 @@ async function getEvent(id: string) {
   return JSON.parse(JSON.stringify(event));
 }
 
-export default async function EditEventPage({ params }: PageProps<{ id: string }>) {
+export default async function EditEventPage({ params }: PageProps) {
   const { id } = await params;        
   const event = await getEvent(id);
 

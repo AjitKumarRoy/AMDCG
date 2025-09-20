@@ -1,7 +1,11 @@
-import type { PageProps } from 'next';
 import { ConferencePaperForm } from "../../components/ConferencePaperForm";
 import dbConnect from "@/lib/dbConnect";
 import { ConferencePaper } from "@/lib/models";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
 
 async function getPaper(id: string) {
   await dbConnect();
@@ -9,8 +13,8 @@ async function getPaper(id: string) {
   return JSON.parse(JSON.stringify(paper));
 }
 
-export default async function EditConferencePaperPage({ params }: PageProps<{ id: string }>) {
-  const { id } = params;
+export default async function EditConferencePaperPage({ params }: PageProps ) {
+  const { id } = await params;
   const paper = await getPaper(id);
 
   return <ConferencePaperForm paper={paper} />;

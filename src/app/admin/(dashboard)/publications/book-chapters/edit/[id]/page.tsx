@@ -1,7 +1,11 @@
-import type { PageProps } from 'next';
 import { BookChapterForm } from "../../components/BookChapterForm";
 import dbConnect from "@/lib/dbConnect";
 import { BookChapter } from "@/lib/models";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
 
 async function getChapter(id: string) {
   await dbConnect();
@@ -9,8 +13,8 @@ async function getChapter(id: string) {
   return JSON.parse(JSON.stringify(chapter));
 }
 
-export default async function EditBookChapterPage({ params }: PageProps<{ id: string }>) {
-  const { id } = params;
+export default async function EditBookChapterPage({ params }: PageProps) {
+  const { id } = await params;
   const chapter = await getChapter(id);
 
   return <BookChapterForm chapter={chapter} />;

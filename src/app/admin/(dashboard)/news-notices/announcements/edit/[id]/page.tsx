@@ -1,7 +1,12 @@
-import type { PageProps } from 'next';
+ 
 import { AnnouncementsForm } from "../../components/AnnouncementsForm";
 import dbConnect from "@/lib/dbConnect";
 import { Announcement } from "@/lib/models";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
 
 async function getAnnouncement(id: string) {
   await dbConnect();
@@ -9,7 +14,7 @@ async function getAnnouncement(id: string) {
   return JSON.parse(JSON.stringify(announcement));
 }
 
-export default async function EditAnnouncementPage({ params }: PageProps<{ id: string }>) {
+export default async function EditAnnouncementPage({ params }: PageProps) {
   const { id } = await params;        
   const announcement = await getAnnouncement(id);
 
