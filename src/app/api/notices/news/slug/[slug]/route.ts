@@ -1,10 +1,14 @@
-import { NextResponse, type RouteHandlerContext } from 'next/server';
+import { NextResponse  } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { NewsArticle } from '@/lib/models';
 
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
 // GET a single article by its SLUG
-export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
-  const { slug } = context.params;
+export async function GET(request: Request, { params }: PageProps) {
+  const { slug } = await params;
   try {
     await dbConnect();
     const article = await NewsArticle.findOne({ slug: slug });

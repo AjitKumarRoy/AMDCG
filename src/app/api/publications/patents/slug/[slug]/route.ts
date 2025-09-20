@@ -1,9 +1,13 @@
-import { NextResponse, type RouteHandlerContext } from 'next/server';
+import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { Patent } from '@/lib/models';
 
-export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
-  const { slug } = context.params;
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function GET(request: Request, { params }: PageProps) {
+  const { slug } = await params;
   try {
     await dbConnect();
     const patent = await Patent.findOne({ slug: slug }); 

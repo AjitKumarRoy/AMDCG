@@ -1,9 +1,13 @@
-import { NextResponse, type RouteHandlerContext } from 'next/server';
+import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import { Facility } from '@/lib/models';
 
-export async function GET(request: Request, context: RouteHandlerContext<{ slug: string }>) {
-  const { id } = context.params;
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export async function GET(request: Request, { params }: PageProps) {
+  const { id } = await params;
   try {
     await dbConnect();
     const facility = await Facility.findById(id);
@@ -16,5 +20,5 @@ export async function GET(request: Request, context: RouteHandlerContext<{ slug:
     return NextResponse.json({ success: false, error: 'Server Error' }, { status: 400 });
   }
 
-  
+
 }
