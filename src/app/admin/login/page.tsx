@@ -3,59 +3,83 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
+import toast from 'react-hot-toast';
+import { Button } from "@/components/ui/Button";
+import { Loader } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setIsSubmitting(true);
 
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
 
-    if (result?.error) {
-      setError("Invalid email or password. Please try again.");
-    } else if (result?.ok) {
-      router.push("/admin/dashboard"); // Redirect to the dashboard on success
+      if (result?.error) {
+        toast.error("Invalid email or password. Please try again.");
+      } else if (result?.ok) {
+        toast.success("Login successful!");
+        router.push("/admin/dashboard");
+      }
+    } catch (error) {
+      toast.error("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <form onSubmit={handleSubmit} className="p-8 rounded-lg border border-white/10 bg-black/20 backdrop-blur-md w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-white mb-6 text-center">Admin Login</h1>
-        {error && <p className="mb-4 text-center text-red-500">{error}</p>}
-        <div className="mb-4">
-          <label className="block text-slate-300 mb-2">Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-slate-800/50 rounded-md border-slate-700 text-white p-2 focus:ring-amber-500 focus:border-amber-500"
-            required
-          />
+    <div className="flex items-center justify-center min-h-screen bg-slate-950">
+      <div className="w-full max-w-sm">
+        <form onSubmit={handleSubmit} className="p-8 rounded-2xl border border-slate-800 bg-black/20 backdrop-blur-md">
+          <h1 className="text-2xl font-bold text-white mb-6 text-center font-display">Admin Login</h1>
+          <div className="mb-4">
+            <label className="block text-slate-300 mb-2 text-sm">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-slate-800/50 rounded-md border-slate-700 text-white p-2 focus:ring-amber-500 focus:border-amber-500"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-slate-300 mb-2 text-sm">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-slate-800/50 rounded-md border-slate-700 text-white p-2 focus:ring-amber-500 focus:border-amber-500"
+              required
+            />
+          </div>
+          <Button type="submit" variant="primary" className="w-full inline-flex justify-center" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <Loader className="h-5 w-5 animate-spin" />
+                <span>Signing In...</span>
+              </>
+            ) : (
+              "Sign In"
+            )}
+          </Button>
+        </form>
+        <div className="text-center mt-6">
+          <Link href="/" className="text-sm text-slate-400 hover:text-amber-400 hover:underline">
+            &larr; Back to Website
+          </Link>
         </div>
-        <div className="mb-6">
-          <label className="block text-slate-300 mb-2">Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-slate-800/50 rounded-md border-slate-700 text-white p-2 focus:ring-amber-500 focus:border-amber-500"
-            required
-          />
-        </div>
-        <button type="submit" className="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 px-4 rounded-md transition-colors">
-          Sign In
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
