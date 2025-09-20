@@ -5,12 +5,13 @@ import { AnnouncementRecruitment } from "./AnnouncementRecruitment";
 import { UpcomingEvents } from "./UpcomingEvents";
 import { type Announcement, type Recruitment, type Event } from '@/types';
 
-// Define the props for the component
+// --- UPDATE THE PROPS INTERFACE HERE ---
 interface NoticesProps {
-  announcements: Announcement[];
-  recruitments: Recruitment[];
-  events: Event[];
+  announcements: (Announcement & { _id: string })[];
+  recruitments: (Recruitment & { _id: string })[];
+  events: (Event & { _id: string })[];
 }
+
 
 export function Notices({ announcements, recruitments, events }: NoticesProps) {
   return (
