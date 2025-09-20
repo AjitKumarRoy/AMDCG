@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { Button } from "@/components/ui/Button";
 import { Loader } from "lucide-react";
@@ -76,9 +75,9 @@ export default function LoginPage() {
           </Button>
         </form>
         <div className="text-center mt-6">
-          <Link href="/" className="text-sm text-slate-400 hover:text-amber-400 hover:underline">
+          <a href="/" className="text-sm text-slate-400 hover:text-amber-400 hover:underline">
             &larr; Back to Website
-          </Link>
+          </a>
         </div>
       </div>
     </div>
